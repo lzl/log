@@ -1,0 +1,30 @@
+<head>
+  <title>log</title>
+</head>
+<body>
+  <h1><a href="/">log</a></h1>
+  <div class="paper">
+    {{> paper}}
+  </div>
+</body>
+
+<template name="paper">
+  <div class="pencil">
+    <form>
+      <textarea type="text" id="text" rows="5" placeholder="What's new?"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <ul>
+    {{> log}}
+  </ul>
+</template>
+
+<template name="log">
+  <li class="line">
+    <div class="log">
+      {{text}}
+    </div>
+  </li>
+</template>
