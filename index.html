@@ -17,7 +17,9 @@
   </div>
 
   <ul>
-    {{> log}}
+    {{#each userLogs}}
+      {{> log}}
+    {{/each}}
   </ul>
 </template>
 
@@ -25,7 +27,6 @@
   <li class="line">
     <div class="log">
       {{text}}
-      This is a fake log.
     </div>
   </li>
 </template>
