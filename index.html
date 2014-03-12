@@ -3,6 +3,9 @@
 </head>
 <body>
   <h1><a href="/">log</a></h1>
+  <div class="login">
+    {{loginButtons align="right"}}
+  </div>
   <div class="paper">
     {{> paper}}
   </div>
@@ -11,16 +14,22 @@
 <template name="paper">
   <div class="pencil">
     <form>
+    {{#if currentUser}}
       <textarea type="text" id="text" rows="5" placeholder="What's new?"></textarea>
       <button type="submit">Submit</button>
+    {{else}}
+      <textarea type="text" readonly id="text" rows="5" placeholder="Sign in to get started."></textarea>
+    {{/if}}
     </form>
   </div>
 
-  <ul>
-    {{#each userLogs}}
-      {{> log}}
-    {{/each}}
-  </ul>
+  {{#if currentUser}}
+    <ul>
+      {{#each userLogs}}
+        {{> log}}
+      {{/each}}
+    </ul>
+  {{/if}}
 </template>
 
 <template name="log">
