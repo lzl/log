@@ -21,7 +21,7 @@ Then, a place to log and a place to see the logs you have submited. That's all w
 
 Layout is done. But it is not working at all. Now let's give it a life.
 
-Meteor uses MongoDB(?) as their database. I created a new collection named "Logs" on both client and server, which is the most important collection in this tiny app.
+Meteor uses MongoDB as their database. I created a new collection named "Logs" on both client and server, which is the most important collection in this tiny app.
 
 When I pushed the "Submit" button, I wish the text in the text area form will insert into that important collection, on both client and server. Of course, the time & date of the text is as important as the text itself, so it need be inserted too.
 
@@ -44,3 +44,15 @@ Account can stop that happening, partly. Add the account feature to an app with 
 With the 'accounts-password' package enabled, we created another collection called 'users', along with the 'logs' one. That means five things at least. 1. There are two modes for every visitors now, sign in or sign out. 2. Each new user has an unique user id string. 3. We can insert that user id along with the text and timestamp into the Logs collection. 4. We can show and only show your logs, no other troubles. 5. We can make the text area form unavailable unless the visitor signed in as a user. Checkout the code to see how I have done that.
 
 Or just [try it](http://log-step3-account.meteor.com), this will keep some of you from messing it up, but not all of you. Next, I will make the app secure completely. Again, with Meteor, it will be simple and easy.
+
+# Security
+
+How to make an app secure? I really don't know. Thank god I have a genuine friend called Meteor.
+
+By logic, to make an app secure, the app itself should control what visitor and user can SEE or DO. All of the rules should be coded on the server side.
+
+1st, at the terminal, 'meteor remove autopublish insecure'. The 'autopublish' package automatically publishes every document in the collection to each connected client. Remove it to control what you can see. The 'insecure' package make sure all users have full write access to the collection. Remove it to control what you can do. Both packages are included by default for prototyping quickly. Be sure to remove them when you're ready for production.
+
+2st, at the code editor, I writed the publish and allow rules by hand. Checkout the code to feel how simple it is.
+
+Or [try it](http://log-step4-security.meteor.com). At the console of your browser, run 'Logs.find().fetch()', it just returns your logs. Then sign out as anonymous, run 'Logs.insert({text: "Insert virus"})', it will show 'insert failed: Access denied'. Meteor is a good teacher, the app gets smarter now.

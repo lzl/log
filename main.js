@@ -2,16 +2,19 @@ Logs = new Meteor.Collection("logs");
 
 if (Meteor.isClient) {
 
-  // Cursor will focus the text area as soon as the DOM is ready.
+  // Client subscribes what the server published.
+  Meteor.subscribe("userLogs");
+
   Meteor.startup(function () {
     $('#text').focus();
   });
 
   ///// Prototype /////
-
-  // Make userLogs return all documents in Logs collection sorted by the created_at field in descending order.
   Template.paper.userLogs = function () {
-    return Logs.find({user_id: Meteor.userId()}, {sort: {created_at: -1}});
+    // Don't need to find the subset of collection.
+    // Don't need to sort them.
+    // They're done by the server now.
+    return Logs.find();
   };
 
   Template.paper.events({
@@ -30,4 +33,19 @@ if (Meteor.isClient) {
       tmpl.find('#text').focus();
     }
   })
+}
+
+if (Meteor.isServer) {
+  // The codes below run on the server only.
+
+  ///// Security /////
+  Meteor.publish("userLogs", function () {
+    return Logs.find({user_id: this.userId}, {sort: {created_at: -1}})
+  });
+
+  Logs.allow({
+    insert: function (userId, doc) {
+      return doc.user_id === userId;
+    }
+  });
 }
