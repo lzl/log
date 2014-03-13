@@ -38,3 +38,13 @@ textarea {
   margin-bottom: 1em;
   list-style-type: none;
 }
+
+img {
+  width: 100%;
+}
+ul {
+  list-style: square inside;
+}
+ol {
+  list-style: decimal inside;
+}

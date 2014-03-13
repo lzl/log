@@ -2,7 +2,6 @@ Logs = new Meteor.Collection("logs");
 
 if (Meteor.isClient) {
 
-  // Client subscribes what the server published.
   Meteor.subscribe("userLogs");
 
   Meteor.startup(function () {
@@ -11,10 +10,7 @@ if (Meteor.isClient) {
 
   ///// Prototype /////
   Template.paper.userLogs = function () {
-    // Don't need to find the subset of collection.
-    // Don't need to sort them.
-    // They're done by the server now.
-    return Logs.find();
+    return Logs.find({}, {sort: {created_at: -1}});
   };
 
   Template.paper.events({
@@ -36,11 +32,10 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
-  // The codes below run on the server only.
 
   ///// Security /////
   Meteor.publish("userLogs", function () {
-    return Logs.find({user_id: this.userId}, {sort: {created_at: -1}})
+    return Logs.find({user_id: this.userId})
   });
 
   Logs.allow({

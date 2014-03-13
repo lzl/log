@@ -68,3 +68,15 @@ Bootstrap is the most popular front-end framework for developing responsive, mob
 By Meteor document, it's only one step to integrate Bootstrap with your app. But I choose another way, download then copy the bootstrap.css file into my app folder. Then add some class names to the html file properly. Done.
 
 [See it](http://log-step5-bootstrap.meteor.com) in live. Now it has a Bootstrap style.
+
+# Markdown
+
+'git checkout step6-markdown'
+
+I love Markdown. It makes editor so powerful with little effort.
+
+1st, at the terminal, 'meteor add showdown'.
+
+2nd, at the code editor, make sure '{{#markdown}}' and '{{/markdown}}' surround the '{{text}}'. Style the css file to fit other trivial situation.
+
+[Check it out](http://log-step6-markdown.meteor.com), signup and signin, then submit some basic markdowned words to see how it render them, e.g. h1, link, list or image.
