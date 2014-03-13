@@ -81,6 +81,11 @@ if (Meteor.isClient) {
       Logs.insert(undoLog);
     }
   });
+
+  ///// Date & Time /////
+  Template.log.dateTime = function () {
+    return this.created_at.toLocaleString();
+  }
 }
 
 if (Meteor.isServer) {

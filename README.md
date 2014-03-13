@@ -108,3 +108,11 @@ Here is the whole concept of the Undo feature:
 The logic is simple and clear. Checkout the code to see how I have done that.
 
 Or, as usual, [try it](http://log-step8-undo.meteor.com) on your browser to feel how good it is.
+
+# Date & Time
+
+'git checkout step9-timestamp'
+
+Each log has its own timestamp. It represents a single moment in time. I have said it is as important as the log text. If the time information would be revealed when the cursor hover the log, life will become more clear.
+
+To implement it is not hard, just a helper and some css stuff. Please [have a try](http://log-step9-timestamp.meteor.com) by moving your mouse.
