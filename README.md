@@ -90,3 +90,21 @@ Maybe it's too simple to feel exciting. I can tell you the next two steps is the
 When you can insert something, you want more power, such as delete some of them. Checkout the code to see how I have done that.
 
 Or [try it](http://log-step7-delete.meteor.com) by yourself.
+
+# Undo
+
+'git checkout step8-undo'
+
+After deleting something, maybe two or three seconds, you regret. That's not good, but shit happens sometimes.
+
+Perhaps someone told you should alert users when they do some important stuff, such as delete data. But I don't think so. Instead of an alert window, what they really need is a trash, the undo button.
+
+Here is the whole concept of the Undo feature:
+
+1. When 'x' is clicked legally, copy that log into a local collection called Trash. Then remove that log from server as while as reveal the Undo button.
+2. If the user regret what has done. Click the Undo button. That log will be restored from the Trash collection on the client to the Logs collection on the server. Everything is fine.
+3. If the user do nothing with the Undo button, like close or refresh the page. The local collection will be reset, including the Trash. Now, that log was gone forever.
+
+The logic is simple and clear. Checkout the code to see how I have done that.
+
+Or, as usual, [try it](http://log-step8-undo.meteor.com) on your browser to feel how good it is.
