@@ -47,6 +47,8 @@ Or just [try it](http://log-step3-account.meteor.com), this will keep some of yo
 
 # Security
 
+'git checkout step4-security'
+
 How to make an app secure? I really don't know. Thank god I have a genuine friend called Meteor.
 
 By logic, to make an app secure, the app itself should control what visitor and user can SEE or DO. All of the rules should be coded on the server side.
