@@ -116,3 +116,13 @@ Or, as usual, [try it](http://log-step8-undo.meteor.com) on your browser to feel
 Each log has its own timestamp. It represents a single moment in time. I have said it is as important as the log text. If the time information would be revealed when the cursor hover the log, life will become more clear.
 
 To implement it is not hard, just a helper and some css stuff. Please [have a try](http://log-step9-timestamp.meteor.com) by moving your mouse.
+
+# Load more
+
+'git checkout step10-loadMore'
+
+If you use this app daily. After months, there will be hundred items in the collection, that's find. But we don't need all of them rendered on the web page. By my test, with thousands of items rendered, there would be performance problem. To keep that happening, let's make a 'Load more' button works as its name implied.
+
+The key in this step is to set a limit on the publish function. Then link the 'Load more' button to change the limit. Session.set and Session.get is our new best friends. They're as reactive as Collection. You can treat them as a minified temporary collecion, which only live on the client.
+
+Checkout the code if you're confused, the code is well commented I think. Or [try it](http://log-step10-loadMore.meteor.com) live. Need to know, the 'Load more' button won't show unless the number of logs in your collection larger than 49.

@@ -2,7 +2,8 @@ Logs = new Meteor.Collection("logs");
 
 if (Meteor.isClient) {
 
-  Meteor.subscribe("userLogs");
+  // Moved to below as a reactive data source.
+  // Meteor.subscribe("userLogs");
 
   Meteor.startup(function () {
     $('#text').focus();
@@ -86,23 +87,47 @@ if (Meteor.isClient) {
   Template.log.dateTime = function () {
     return this.created_at.toLocaleString();
   }
+
+  ///// Load more /////
+  // Set the 'loadMore' session to 50 by default.
+  Session.set('loadMore', 50);
+
+  // Only show the 'Load more' button if the
+  // number of items in the Logs collection
+  // larger than 49;
+  Template.paper.showMore = function () {
+    return Logs.find().count() > 49;
+  }
+
+  // Click the 'Load more' button to show 50 more logs.
+  Template.paper.events({
+    'click .load-more': function (e) {
+      e.preventDefault();
+      Session.set('loadMore', Session.get('loadMore') + 50);
+    }
+  })
+
+  // If the 'loadMore' session changed. It will
+  // be rerunning, aka, subscribe userLogs again.
+  Deps.autorun(function() {
+    window.loaded = Meteor.subscribe('userLogs', Session.get('loadMore'));
+  });
 }
 
 if (Meteor.isServer) {
 
   ///// Security /////
-  Meteor.publish("userLogs", function () {
-    return Logs.find({user_id: this.userId})
+  // Limit the number of items while publish.
+  // I added the sort back, because I wish the app
+  // publish the latest items with 'limit' enabled.
+  Meteor.publish("userLogs", function (limit) {
+    return Logs.find({user_id: this.userId}, {sort: {created_at: -1}, limit: limit})
   });
 
   Logs.allow({
     insert: function (userId, doc) {
       return doc.user_id === userId;
     },
-
-    // Others could not remove yours. You
-    // don't have the permission to hurt
-    // others, too.
     remove: function (userId, doc) {
       return doc.user_id === userId;
     }
