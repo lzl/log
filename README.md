@@ -47,6 +47,8 @@ Or just [try it](http://log-step3-account.meteor.com), this will keep some of yo
 
 # Security
 
+'git checkout step4-security'
+
 How to make an app secure? I really don't know. Thank god I have a genuine friend called Meteor.
 
 By logic, to make an app secure, the app itself should control what visitor and user can SEE or DO. All of the rules should be coded on the server side.
@@ -56,3 +58,13 @@ By logic, to make an app secure, the app itself should control what visitor and 
 2st, at the code editor, I writed the publish and allow rules by hand. Checkout the code to feel how simple it is.
 
 Or [try it](http://log-step4-security.meteor.com). At the console of your browser, run 'Logs.find().fetch()', it just returns your logs. Then sign out as anonymous, run 'Logs.insert({text: "Insert virus"})', it will show 'insert failed: Access denied'. Meteor is a good teacher, the app gets smarter now.
+
+# Bootstrap
+
+'git checkout step5-bootstrap'
+
+Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web.
+
+By Meteor document, it's only one step to integrate Bootstrap with your app. But I choose another way, download then copy the bootstrap.css file into my app folder. Then add some class names to the html file properly. Done.
+
+[See it](http://log-step5-bootstrap.meteor.com) in live. Now it has a Bootstrap style.

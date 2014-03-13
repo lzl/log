@@ -15,8 +15,8 @@
   <div class="pencil">
     <form>
     {{#if currentUser}}
-      <textarea type="text" id="text" rows="5" placeholder="What's new?"></textarea>
-      <button type="submit">Submit</button>
+      <textarea type="text" id="text" class="form-control" rows="5" placeholder="What's new?"></textarea>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
     {{else}}
       <textarea type="text" readonly id="text" rows="5" placeholder="Sign in to get started."></textarea>
     {{/if}}
