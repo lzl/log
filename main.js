@@ -29,6 +29,22 @@ if (Meteor.isClient) {
       tmpl.find('#text').focus();
     }
   })
+
+  ///// Delete /////
+  // showRemove is a template helpers available
+  // to the log template. If this log is created
+  // by you, return true.
+  Template.log.showRemove = function () {
+    return this.user_id === Meteor.userId();
+  };
+
+  // When you click 'x', that log you owned will 
+  // be removed by you.
+  Template.log.events({
+    'click .eraser': function () {
+      Logs.remove(this._id);
+    }
+  });
 }
 
 if (Meteor.isServer) {
@@ -40,6 +56,13 @@ if (Meteor.isServer) {
 
   Logs.allow({
     insert: function (userId, doc) {
+      return doc.user_id === userId;
+    },
+
+    // Others could not remove yours. You
+    // don't have the permission to hurt
+    // others, too.
+    remove: function (userId, doc) {
       return doc.user_id === userId;
     }
   });

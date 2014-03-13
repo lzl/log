@@ -38,6 +38,10 @@ textarea {
   margin-bottom: 1em;
   list-style-type: none;
 }
+.eraser {
+  margin-left: -1em;
+  float: left;
+}
 
 img {
   width: 100%;

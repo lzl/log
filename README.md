@@ -80,3 +80,13 @@ I love Markdown. It makes editor so powerful with little effort.
 2nd, at the code editor, make sure '{{#markdown}}' and '{{/markdown}}' surround the '{{text}}'. Style the css file to fit other trivial situation.
 
 [Check it out](http://log-step6-markdown.meteor.com), signup and signin, then submit some basic markdowned words to see how it render them, e.g. h1, link, list or image.
+
+# Delete
+
+'git checkout step7-delete'
+
+Maybe it's too simple to feel exciting. I can tell you the next two steps is the true beginning of handcraft coding.
+
+When you can insert something, you want more power, such as delete some of them. Checkout the code to see how I have done that.
+
+Or [try it](http://log-step7-delete.meteor.com) by yourself.

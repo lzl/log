@@ -34,6 +34,10 @@
 
 <template name="log">
   <li class="line">
+    <!-- Show the eraser if showRemove is true. -->
+    {{#if showRemove}}
+      <a class="eraser">x</a>
+    {{/if}}
     <div class="log">
       {{#markdown}}{{text}}{{/markdown}}
     </div>
