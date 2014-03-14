@@ -141,4 +141,4 @@ You can always [try it](http://log-step11-search.meteor.com) by yourself. Submit
 
 People love to preview result before submitting. How greedy we are! 
 
-Fortunately, God forgives us. [Try it](http://log.step12-preview.meteor.com) to feel if it's comfortable enough.
+Fortunately, God forgives us. [Try it](http://log-step12-preview.meteor.com) to feel if it's comfortable enough.
