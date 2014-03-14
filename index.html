@@ -24,6 +24,13 @@
   </div>
 
   {{#if currentUser}}
+    {{#if showPreview}}
+    <div class="preview">
+      {{#markdown}}{{textPreview}}{{/markdown}}
+      <div class="label label-info topRight">Preview</div>
+    </div>
+    {{/if}}
+
     {{#if showSearch}}
     <ul>
       {{#each searchedLogs}}

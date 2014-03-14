@@ -40,6 +40,8 @@ if (Meteor.isClient) {
 
       tmpl.find('form').reset();
       tmpl.find('#text').focus();
+      Session.set('showSearch', false);
+      Session.set('showPreview', false);
     }
   });
 
@@ -98,20 +100,6 @@ if (Meteor.isClient) {
   Template.paper.showMore = function () {
     return Logs.find().count() > 49;
   };
-
-  // Template.paper.disabled = function () {
-  //   var loadMore = Session.get('loadMore');
-  //   var searchMore = Session.get('searchMore');
-  //   var loaded = Logs.find().count();
-  //   var text = Session.get('searchKeyword');
-  //   var query = new RegExp(text, 'i');
-  //   var searched = Logs.find({text: query}).count();
-  //   if (loadMore > loaded || searchMore > searched) {
-  //     return disabled="disabled";
-  //   } else {
-  //     return;
-  //   }
-  // };
 
   Template.paper.disabledLoadMore = function () {
     var loadMore = Session.get('loadMore');
@@ -182,9 +170,12 @@ if (Meteor.isClient) {
       if (val && Meteor.userId()) {
         Session.set('searchKeyword', val);
         Session.set('showSearch', true);
+        Session.set('showPreview',true);
+        Session.set('textPreview', val);
       } else {
         Session.set('showSearch', false);
         Session.set('searchMore', 10);
+        Session.set('showPreview', false);
       }
     },
     'click .search-more': function (e, tmpl) {
@@ -196,6 +187,15 @@ if (Meteor.isClient) {
   Deps.autorun(function() {
     window.searched = Meteor.subscribe('searchedLogs', Session.get('searchKeyword'), Session.get('searchMore'));
   });
+
+  ///// Preview /////
+  Template.paper.showPreview = function () {
+    return Session.get('showPreview');
+  };
+
+  Template.paper.textPreview = function () {
+    return Session.get('textPreview');
+  };
 }
 
 if (Meteor.isServer) {

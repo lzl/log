@@ -134,3 +134,11 @@ Checkout the code if you're confused, the code is well commented I think. Or [tr
 I said "When you output with your finger on the keyboard, the bytes print on the screen will and only will be what you're typing or its context." at the 1st step. Search is the core of "its context". In a single box, you can type and you can search, at the same time, while your fingers are dancing.
 
 You can always [try it](http://log-step11-search.meteor.com) by yourself. Submit some logs, then search it like you're typing a new log.
+
+## Preview
+
+`git checkout step12-preview`
+
+People love to preview result before submitting. How greedy we are! 
+
+Fortunately, God forgives us. [Try it](http://log.step12-preview.meteor.com) to feel if it's comfortable enough.

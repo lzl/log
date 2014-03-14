@@ -58,6 +58,18 @@ textarea {
   opacity: 1;
   transition: opacity 0.1s 0.3s ease;
 }
+.preview {
+  position: relative;
+  border: 1px solid #46b8da;
+  border-radius: .25em;
+  padding: 6px 12px;
+  margin-bottom: 1em;
+}
+.topRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 img {
   width: 100%;
