@@ -116,6 +116,7 @@ if (Meteor.isClient) {
   ///// Search /////
   // Set the showSearch session to false by default.
   Session.set('showSearch', false);
+  Session.set('searchMore', 10);
 
   Template.paper.showSearch = function () {
     return Session.get('showSearch');
@@ -136,6 +137,12 @@ if (Meteor.isClient) {
     });
   };
 
+  Template.paper.showMoreSearch = function () {
+    var text = Session.get('searchKeyword');
+    var query = new RegExp(text, 'i');
+    return Logs.find({text: query}).count() > 9;
+  };
+
   Template.paper.events({
     'keyup, #text': function (e, tmpl) {
       e.preventDefault();
@@ -145,12 +152,17 @@ if (Meteor.isClient) {
         Session.set('showSearch', true);
       } else {
         Session.set('showSearch', false);
+        Session.set('searchMore', 10);
       }
+    },
+    'click .search-more': function (e) {
+      e.preventDefault();
+      Session.set('searchMore', Session.get('searchMore') + 20);
     }
   });
 
   Deps.autorun(function() {
-    window.searched = Meteor.subscribe('searchedLogs', Session.get('searchKeyword'));
+    window.searched = Meteor.subscribe('searchedLogs', Session.get('searchKeyword'), Session.get('searchMore'));
   });
 }
 
@@ -164,9 +176,9 @@ if (Meteor.isServer) {
     return Logs.find({user_id: this.userId}, {sort: {created_at: -1}, limit: limit})
   });
 
-  Meteor.publish("searchedLogs", function (text) {
+  Meteor.publish("searchedLogs", function (text, limit) {
     var query = new RegExp(text, 'i');
-    return Logs.find({text: query}, {sort: {created_at: -1}});
+    return Logs.find({text: query}, {sort: {created_at: -1}, limit: limit});
   });
 
   Logs.allow({

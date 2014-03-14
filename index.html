@@ -29,6 +29,9 @@
       {{#each searchedLogs}}
         {{> log}}
       {{/each}}
+      {{#if showMoreSearch}}
+        <button type="button" class="search-more btn btn-default btn-block">Load more</button>
+      {{/if}}
     </ul>
     {{else}}
       <ul>
