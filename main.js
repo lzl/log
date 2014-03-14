@@ -99,6 +99,22 @@ if (Meteor.isClient) {
     return Logs.find().count() > 49;
   };
 
+  Template.paper.disabled = function () {
+    var loadMore = Session.get('loadMore');
+    var searchMore = Session.get('searchMore');
+    var loaded = Logs.find().count();
+    var text = Session.get('searchKeyword');
+    var query = new RegExp(text, 'i');
+    var searched = Logs.find({text: query}).count();
+    if (loadMore > loaded) {
+      return disabled="disabled";
+    } else if (searchMore > searched) {
+      return disabled="disabled";
+    } else {
+      return;
+    }
+  };
+
   // Click the 'Load more' button to show 50 more logs.
   Template.paper.events({
     'click .load-more': function (e) {
@@ -178,7 +194,7 @@ if (Meteor.isServer) {
 
   Meteor.publish("searchedLogs", function (text, limit) {
     var query = new RegExp(text, 'i');
-    return Logs.find({text: query}, {sort: {created_at: -1}, limit: limit});
+    return Logs.find({user_id: this.userId, text: query}, {sort: {created_at: -1}, limit: limit});
   });
 
   Logs.allow({

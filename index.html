@@ -30,7 +30,7 @@
         {{> log}}
       {{/each}}
       {{#if showMoreSearch}}
-        <button type="button" class="search-more btn btn-default btn-block">Load more</button>
+        <button type="button" class="search-more btn btn-default btn-block" {{disabled}}>Load more</button>
       {{/if}}
     </ul>
     {{else}}
@@ -40,7 +40,7 @@
         {{/each}}
       </ul>
       {{#if showMore}}
-        <button type="button" class="load-more btn btn-default btn-block">Load more</button>
+        <button type="button" class="load-more btn btn-default btn-block" {{disabled}}>Load more</button>
       {{/if}}
     {{/if}}
   {{/if}}
@@ -48,7 +48,6 @@
 
 <template name="log">
   <li class="line">
-    <!-- Show the eraser if showRemove is true. -->
     {{#if showRemove}}
       <a class="eraser">x</a>
     {{/if}}
