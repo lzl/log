@@ -53,7 +53,7 @@ if (Meteor.isClient) {
   };
 
   Template.log.events({
-    'click .eraser': function () {
+    'click .eraser': function (e, tmpl) {
       // Copy that log into Trash.
       Trash.insert(this);
       // Insert the Undo button with that
@@ -99,25 +99,41 @@ if (Meteor.isClient) {
     return Logs.find().count() > 49;
   };
 
-  Template.paper.disabled = function () {
+  // Template.paper.disabled = function () {
+  //   var loadMore = Session.get('loadMore');
+  //   var searchMore = Session.get('searchMore');
+  //   var loaded = Logs.find().count();
+  //   var text = Session.get('searchKeyword');
+  //   var query = new RegExp(text, 'i');
+  //   var searched = Logs.find({text: query}).count();
+  //   if (loadMore > loaded || searchMore > searched) {
+  //     return disabled="disabled";
+  //   } else {
+  //     return;
+  //   }
+  // };
+
+  Template.paper.disabledLoadMore = function () {
     var loadMore = Session.get('loadMore');
-    var searchMore = Session.get('searchMore');
     var loaded = Logs.find().count();
+    if (loadMore > loaded) {
+      return disabled="disabled";
+    }
+  };
+
+  Template.paper.disabledSearchMore = function () {
+    var searchMore = Session.get('searchMore');
     var text = Session.get('searchKeyword');
     var query = new RegExp(text, 'i');
     var searched = Logs.find({text: query}).count();
-    if (loadMore > loaded) {
+    if (searchMore > searched) {
       return disabled="disabled";
-    } else if (searchMore > searched) {
-      return disabled="disabled";
-    } else {
-      return;
     }
   };
 
   // Click the 'Load more' button to show 50 more logs.
   Template.paper.events({
-    'click .load-more': function (e) {
+    'click .load-more': function (e, tmpl) {
       e.preventDefault();
       Session.set('loadMore', Session.get('loadMore') + 50);
     }
@@ -171,7 +187,7 @@ if (Meteor.isClient) {
         Session.set('searchMore', 10);
       }
     },
-    'click .search-more': function (e) {
+    'click .search-more': function (e, tmpl) {
       e.preventDefault();
       Session.set('searchMore', Session.get('searchMore') + 20);
     }

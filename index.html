@@ -30,7 +30,7 @@
         {{> log}}
       {{/each}}
       {{#if showMoreSearch}}
-        <button type="button" class="search-more btn btn-default btn-block" {{disabled}}>Load more</button>
+        <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>Load more</button>
       {{/if}}
     </ul>
     {{else}}
@@ -40,7 +40,7 @@
         {{/each}}
       </ul>
       {{#if showMore}}
-        <button type="button" class="load-more btn btn-default btn-block" {{disabled}}>Load more</button>
+        <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>Load more</button>
       {{/if}}
     {{/if}}
   {{/if}}
