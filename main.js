@@ -41,7 +41,7 @@ if (Meteor.isClient) {
       tmpl.find('form').reset();
       tmpl.find('#text').focus();
     }
-  })
+  });
 
   ///// Delete & Undo/////
   // Create a local collection called Trash.
@@ -86,7 +86,7 @@ if (Meteor.isClient) {
   ///// Date & Time /////
   Template.log.dateTime = function () {
     return this.created_at.toLocaleString();
-  }
+  };
 
   ///// Load more /////
   // Set the 'loadMore' session to 50 by default.
@@ -97,7 +97,7 @@ if (Meteor.isClient) {
   // larger than 49;
   Template.paper.showMore = function () {
     return Logs.find().count() > 49;
-  }
+  };
 
   // Click the 'Load more' button to show 50 more logs.
   Template.paper.events({
@@ -105,23 +105,68 @@ if (Meteor.isClient) {
       e.preventDefault();
       Session.set('loadMore', Session.get('loadMore') + 50);
     }
-  })
+  });
 
   // If the 'loadMore' session changed. It will
   // be rerunning, aka, subscribe userLogs again.
   Deps.autorun(function() {
     window.loaded = Meteor.subscribe('userLogs', Session.get('loadMore'));
   });
+
+  ///// Search /////
+  // Set the showSearch session to false by default.
+  Session.set('showSearch', false);
+
+  Template.paper.showSearch = function () {
+    return Session.get('showSearch');
+  };
+
+  Template.paper.searchedLogs = function () {
+    var text = Session.get('searchKeyword');
+    // RegExp is a big helper in this search step.
+    // The RegExp constructor creates a regular
+    // expression object for matching text with a pattern.
+    // The 'i' flag means ignore case.
+    var query = new RegExp(text, 'i');
+    var searchedLogs = Logs.find({text: query}).fetch();
+    var undoLogs = Undos.find().fetch();
+    var allLogs = searchedLogs.concat(undoLogs);
+    return _.sortBy(allLogs, function(doc) {
+      return -doc.created_at;
+    });
+  };
+
+  Template.paper.events({
+    'keyup, #text': function (e, tmpl) {
+      e.preventDefault();
+      var val = tmpl.find('#text').value;
+      if (val && Meteor.userId()) {
+        Session.set('searchKeyword', val);
+        Session.set('showSearch', true);
+      } else {
+        Session.set('showSearch', false);
+      }
+    }
+  });
+
+  Deps.autorun(function() {
+    window.searched = Meteor.subscribe('searchedLogs', Session.get('searchKeyword'));
+  });
 }
 
 if (Meteor.isServer) {
 
-  ///// Security /////
+  ///// Security  && Search/////
   // Limit the number of items while publish.
   // I added the sort back, because I wish the app
   // publish the latest items with 'limit' enabled.
   Meteor.publish("userLogs", function (limit) {
     return Logs.find({user_id: this.userId}, {sort: {created_at: -1}, limit: limit})
+  });
+
+  Meteor.publish("searchedLogs", function (text) {
+    var query = new RegExp(text, 'i');
+    return Logs.find({text: query}, {sort: {created_at: -1}});
   });
 
   Logs.allow({

@@ -126,3 +126,11 @@ If you use this app daily. After months, there will be hundred items in the coll
 The key in this step is to set a limit on the publish function. Then link the 'Load more' button to change the limit. Session.set and Session.get is our new best friends. They're as reactive as Collection. You can treat them as a minified temporary collecion, which only live on the client.
 
 Checkout the code if you're confused, the code is well commented I think. Or [try it](http://log-step10-loadMore.meteor.com) live. Need to know, the 'Load more' button won't show unless the number of logs in your collection larger than 49.
+
+## Search
+
+`git checkout step11-search`
+
+I said "When you output with your finger on the keyboard, the bytes print on the screen will and only will be what you're typing or its context." at the 1st step. Search is the core of "its context". In a single box, you can type and you can search, at the same time, while your fingers are dancing.
+
+You can always [try it](http://log-step11-search.meteor.com) by yourself. Submit some logs, then search it like you're typing a new log.
