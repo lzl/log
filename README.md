@@ -142,3 +142,9 @@ You can always [try it](http://log-step11-search.meteor.com) by yourself. Submit
 People love to preview result before submitting. How greedy we are! 
 
 Fortunately, God forgives us. [Try it](http://log-step12-preview.meteor.com) to feel if it's comfortable enough.
+
+## Demo
+
+`git checkout step13-demo`
+
+At the 3rd step, I made a decision that visitors can't try my app untill they deside to create an account. The "signup" action consumes energy, people hate to consume energy before they know they will get more value back. Without Demo feature, no matter how beautiful your codes are or how great your app is, few people would buy it.

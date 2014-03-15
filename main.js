@@ -2,12 +2,36 @@ Logs = new Meteor.Collection("logs");
 
 if (Meteor.isClient) {
 
-  // Moved to below as a reactive data source.
-  // Meteor.subscribe("userLogs");
-
   Meteor.startup(function () {
     $('#text').focus();
   });
+
+  ///// Demo /////
+  if (!Meteor.userId()) {
+    var Demo = new Meteor.Collection(null);
+    demoLogs = ["Hello world!",
+                "This is a new log. You can create one by yourself."];
+    demoInsertTimes = 0;
+
+    function demoInsert () {
+      if (demoInsertTimes < demoLogs.length) {
+        Demo.insert({
+          text: demoLogs[demoInsertTimes],
+          created_at: new Date()
+        });
+        demoInsertTimes++;
+      } else {
+        console.log("You should signup by click the [Sign in] button.");
+        Meteor.clearInterval(timeout);
+      }
+    }
+
+    timeout = Meteor.setInterval(demoInsert, 2000);
+
+    Template.paper.demoLogs = function () {
+      return Demo.find({}, {sort: {created_at: -1}});
+    };
+  }
 
   ///// Prototype & Undo/////
   Template.paper.userLogs = function () {
@@ -30,12 +54,29 @@ if (Meteor.isClient) {
     'submit form': function (e, tmpl) {
       e.preventDefault();
       var val = tmpl.find('#text').value;
+
       if (val && Meteor.userId()) {
         Logs.insert({
           text: val,
           user_id: Meteor.userId(),
           created_at: new Date()
         });
+      }
+
+      if (val && !Meteor.userId()) {
+        Demo.insert({
+          text: val,
+          created_at: new Date()
+        });
+        if (Demo.find().count() === demoLogs.length + 1) {
+          function demoTried () {
+            demoLogs = ["You just got it.",
+                        "Congratulations!"];
+            demoInsertTimes = 0;
+            timeout = Meteor.setInterval(demoInsert, 2000);
+          }
+          demoTried();
+        }
       }
 
       tmpl.find('form').reset();
