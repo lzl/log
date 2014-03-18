@@ -33,6 +33,7 @@ textarea {
   width: 100%;
   font-size: 1em;
   line-height: 150%;
+  resize: vertical;
 }
 .line {
   margin-bottom: 1em;
