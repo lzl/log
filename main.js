@@ -9,7 +9,8 @@ if (Meteor.isClient) {
   ///// Demo /////
   if (!Meteor.userId()) {
     var Demo = new Meteor.Collection(null);
-    demoLogs = ["Hello world!",
+    demoLogs = [Meteor.release,
+                "Hello world!",
                 "This is a new log. You can create one by yourself."];
     demoInsertTimes = 0;
 
@@ -69,13 +70,12 @@ if (Meteor.isClient) {
           created_at: new Date()
         });
         if (Demo.find().count() === demoLogs.length + 1) {
-          function demoTried () {
+          (function() {
             demoLogs = ["You just got it.",
                         "Congratulations!"];
             demoInsertTimes = 0;
             timeout = Meteor.setInterval(demoInsert, 2000);
-          }
-          demoTried();
+          })();
         }
       }
 
@@ -128,7 +128,11 @@ if (Meteor.isClient) {
 
   ///// Date & Time /////
   Template.log.dateTime = function () {
-    return this.created_at.toLocaleString();
+    // return this.created_at.toLocaleString();
+    var createdAt = this.created_at;
+    var date = createdAt.getFullYear() + '.' + createdAt.getMonth() + '.' + createdAt.getDate();
+    var time = createdAt.getHours() + ':' + createdAt.getMinutes();
+    return date + ' ' + time;
   };
 
   ///// Load more /////
@@ -170,8 +174,8 @@ if (Meteor.isClient) {
 
   // If the 'loadMore' session changed. It will
   // be rerunning, aka, subscribe userLogs again.
-  Deps.autorun(function() {
-    window.loaded = Meteor.subscribe('userLogs', Session.get('loadMore'));
+  Deps.autorun(function () {
+    Meteor.subscribe('userLogs', Session.get('loadMore'));
   });
 
   ///// Search /////
@@ -225,8 +229,8 @@ if (Meteor.isClient) {
     }
   });
 
-  Deps.autorun(function() {
-    window.searched = Meteor.subscribe('searchedLogs', Session.get('searchKeyword'), Session.get('searchMore'));
+  Deps.autorun(function () {
+    Meteor.subscribe('searchedLogs', Session.get('searchKeyword'), Session.get('searchMore'));
   });
 
   ///// Preview /////
