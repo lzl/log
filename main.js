@@ -9,9 +9,9 @@ if (Meteor.isClient) {
   ///// Demo /////
   if (!Meteor.userId()) {
     var Demo = new Meteor.Collection(null);
-    demoLogs = [Meteor.release,
-                "Hello world!",
-                "This is a new log. You can create one by yourself."];
+    demoLogs = ["Meteor " + Meteor.release,
+                "Hello world! 你好，世界！",
+                "This is a new log. You can create one by yourself.\n\n你现在就可以试着提交一条日志。快，我等着你。"];
     demoInsertTimes = 0;
 
     function demoInsert () {
@@ -71,8 +71,9 @@ if (Meteor.isClient) {
         });
         if (Demo.find().count() === demoLogs.length + 1) {
           (function() {
-            demoLogs = ["You just got it.",
-                        "Congratulations!"];
+            demoLogs = ["You just got it. 你成功了。",
+                        "Congratulations! 恭喜你！",
+                        "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now!](/signup.gif 'How to sign up?')"];
             demoInsertTimes = 0;
             timeout = Meteor.setInterval(demoInsert, 2000);
           })();
