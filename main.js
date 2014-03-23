@@ -7,7 +7,9 @@ if (Meteor.isClient) {
   });
 
   ///// Demo /////
+  // Run this when visitor is not signed in.
   if (!Meteor.userId()) {
+    // Create a local collection called Demo to store the demo messages.
     var Demo = new Meteor.Collection(null);
     demoLogs = ["Meteor " + Meteor.release,
                 "Hello world! 你好，世界！",
@@ -26,7 +28,7 @@ if (Meteor.isClient) {
         Meteor.clearInterval(timeout);
       }
     }
-
+    // Insert the message above every 2 seconds.
     timeout = Meteor.setInterval(demoInsert, 2000);
 
     Template.paper.demoLogs = function () {
