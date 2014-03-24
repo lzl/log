@@ -55,7 +55,7 @@ By logic, to make an app secure, the app itself should control what visitor and 
 
 1st, at the terminal, `meteor remove autopublish insecure`. The 'autopublish' package automatically publishes every document in the collection to each connected client. Remove it to control what you can see. The 'insecure' package make sure all users have full write access to the collection. Remove it to control what you can do. Both packages are included by default for prototyping quickly. Be sure to remove them when your app is ready for production.
 
-2st, at the code editor, I wrote the publish and allow rules by hand. Checkout the code to feel how simple it is.
+2nd, at the code editor, I wrote the publish and allow rules by hand. Checkout the code to feel how simple it is.
 
 Or [try it](http://log-step4-security.meteor.com). At the console of your browser, run `Logs.find().fetch()`, it just returns your logs. Then sign out as anonymous, run `Logs.insert({text: "Insert virus"})`, it will show `insert failed: Access denied`. Meteor is a good teacher, the app gets smarter now.
 
@@ -148,3 +148,5 @@ Fortunately, God forgives us. [Try it](http://log-step12-preview.meteor.com) to 
 `git checkout step13-demo`
 
 At the 3rd step, I made a decision that visitors can't try my app untill they deside to create an account. The "signup" action consumes energy, people hate to consume energy before they know they will get more value back. Without Demo feature, no matter how beautiful your codes are or how great your app is, few people would buy it.
+
+Finally, this app is finished. Check out [http://log.meteor.com]().

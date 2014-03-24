@@ -75,7 +75,7 @@ if (Meteor.isClient) {
           (function() {
             demoLogs = ["You just got it. 你成功了。",
                         "Congratulations! 恭喜你！",
-                        "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now!](/signup.gif 'How to sign up?')"];
+                        "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup.gif)"];
             demoInsertTimes = 0;
             timeout = Meteor.setInterval(demoInsert, 2000);
           })();
