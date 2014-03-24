@@ -1,0 +1,68 @@
+<head>
+  <title>log</title>
+</head>
+<body>
+  <h1><a href="/">log</a></h1>
+  <div class="login">
+    {{loginButtons align="right"}}
+  </div>
+  <div class="paper">
+    {{> paper}}
+  </div>
+</body>
+
+<template name="paper">
+  <div class="pencil">
+    <form>
+      <textarea type="text" id="text" class="form-control" rows="5" placeholder="What's new?"></textarea>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+  </div>
+
+  {{#if currentUser}}
+    {{#if showPreview}}
+    <div class="preview">
+      {{#markdown}}{{textPreview}}{{/markdown}}
+      <div class="label label-info topRight">Preview</div>
+    </div>
+    {{/if}}
+
+    {{#if showSearch}}
+    <ul>
+      {{#each searchedLogs}}
+        {{> log}}
+      {{/each}}
+      {{#if showMoreSearch}}
+        <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>Load more</button>
+      {{/if}}
+    </ul>
+    {{else}}
+      <ul>
+        {{#each userLogs}}
+          {{> log}}
+        {{/each}}
+      </ul>
+      {{#if showMore}}
+        <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>Load more</button>
+      {{/if}}
+    {{/if}}
+  {{else}}
+    <ul>
+      {{#each demoLogs}}
+        {{> log}}
+      {{/each}}
+    </ul>
+  {{/if}}
+</template>
+
+<template name="log">
+  <li class="line">
+    {{#if showRemove}}
+      <a class="eraser">x</a>
+    {{/if}}
+    <div class="log">
+      {{#markdown}}{{text}}{{/markdown}}
+      <span class="dateTime">{{dateTime}}</span>
+    </div>
+  </li>
+</template>
