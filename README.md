@@ -1,7 +1,9 @@
 log
 ===
 
-Do you have a life? Log it for the future version of yourself.
+Do you have a life? [Log it for the future version of yourself.](http://log.meteor.com/)
+
+[![log](http://ww2.sinaimg.cn/large/62afd08agw1ees3svsu9cg20jg0b4tn3.gif)](http://log.meteor.com/)
 
 ## Why?
 
