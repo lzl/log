@@ -7,12 +7,13 @@ if (Meteor.isClient) {
   });
 
   ///// Demo /////
+  Session.set("demoContinue", true);
   // Run this when visitor is not signed in.
   if (!Meteor.userId()) {
     // Create a local collection called Demo to store the demo messages.
     var Demo = new Meteor.Collection(null);
-    demoLogs = ["Meteor " + Meteor.release,
-                "Hello world! 你好，世界！",
+    demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release,
+                "I'm the anti-social version of Twitter for introverts.\n\n这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
                 "This is a new log. You can create one by yourself.\n\n你现在就可以试着提交一条日志。快，我等着你。"];
     demoInsertTimes = 0;
 
@@ -71,14 +72,15 @@ if (Meteor.isClient) {
           text: val,
           created_at: new Date()
         });
-        if (Demo.find().count() === demoLogs.length + 1) {
+        if (Demo.find().count() > demoLogs.length && Session.get("demoContinue")) {
           (function() {
             demoLogs = ["You just got it. 你成功了。",
                         "Congratulations! 恭喜你！",
-                        "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup.gif)"];
+                        "Signup for free, then you can log and search your life.\n\n你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup.gif)"];
             demoInsertTimes = 0;
             timeout = Meteor.setInterval(demoInsert, 2000);
           })();
+          Session.set("demoContinue", false);
         }
       }
 
