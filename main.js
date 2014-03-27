@@ -130,13 +130,6 @@ if (Meteor.isClient) {
   });
 
   ///// Date & Time /////
-  // Template.log.dateTime = function () {
-  //   // return this.created_at.toLocaleString();
-  //   var createdAt = this.created_at;
-  //   var date = createdAt.getFullYear() + '.' + createdAt.getMonth() + '.' + createdAt.getDate();
-  //   var time = createdAt.getHours() + ':' + createdAt.getMinutes();
-  //   return date + ' ' + time;
-  // };
   Template.log.dateTime = function () {
     var dateTime = moment(this.created_at).format("YYYY.MM.DD HH:mm:ss");
     // var timeAgo = moment(this.created_at).fromNow();
