@@ -197,12 +197,13 @@ if (Meteor.isClient) {
     // expression object for matching text with a pattern.
     // The 'i' flag means ignore case.
     var query = new RegExp(text, 'i');
-    var searchedLogs = Logs.find({text: query}).fetch();
-    var undoLogs = Undos.find().fetch();
-    var allLogs = searchedLogs.concat(undoLogs);
-    return _.sortBy(allLogs, function(doc) {
-      return -doc.created_at;
-    });
+    return Logs.find({text: query});
+    // var searchedLogs = Logs.find({text: query}).fetch();
+    // var undoLogs = Undos.find({text: query}).fetch();
+    // var allLogs = searchedLogs.concat(undoLogs);
+    // return _.sortBy(allLogs, function(doc) {
+    //   return -doc.created_at;
+    // });
   };
 
   Template.paper.showMoreSearch = function () {
