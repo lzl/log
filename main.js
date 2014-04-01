@@ -7,11 +7,11 @@ if (Meteor.isClient) {
   });
 
   ///// Demo /////
-  Session.set("demoContinue", true);
   // Run this when visitor is not signed in.
   if (!Meteor.userId()) {
     // Create a local collection called Demo to store the demo messages.
     var Demo = new Meteor.Collection(null);
+    Session.set("demoContinue", true);
     demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release,
                 "I'm the anti-social version of Twitter for introverts.\n\n这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
                 "This is a new log. You can create one by yourself.\n\n你现在就可以试着提交一条日志。快，我等着你。"];
