@@ -218,6 +218,7 @@ if (Meteor.isClient) {
       var val = tmpl.find('#text').value;
       if (val && Meteor.userId()) {
         Session.set('searchKeyword', val);
+        window.localStorage.autosave = val;
         Session.set('showSearch', true);
         Session.set('showPreview',true);
         Session.set('textPreview', val);
@@ -245,6 +246,11 @@ if (Meteor.isClient) {
   Template.paper.textPreview = function () {
     return Session.get('textPreview');
   };
+
+  ///// Autosave /////
+  Template.paper.autosave = function () {
+    return Session.get('searchKeyword') || window.localStorage.autosave;
+  }
 }
 
 if (Meteor.isServer) {
