@@ -3,7 +3,7 @@ Logs = new Meteor.Collection("logs");
 if (Meteor.isClient) {
 
   Meteor.startup(function () {
-    $('#text').focus();
+    $( "#text" ).focus();
   });
 
   ///// Demo /////
@@ -133,9 +133,7 @@ if (Meteor.isClient) {
 
   ///// Date & Time /////
   Template.log.dateTime = function () {
-    var dateTime = moment(this.created_at).format("YYYY.MM.DD HH:mm:ss");
-    // var timeAgo = moment(this.created_at).fromNow();
-    return dateTime;
+    return moment(this.created_at).format("YYYY.MM.DD HH:mm:ss");
   };
 
   ///// Load more /////
@@ -197,13 +195,7 @@ if (Meteor.isClient) {
     // expression object for matching text with a pattern.
     // The 'i' flag means ignore case.
     var query = new RegExp(text, 'i');
-    return Logs.find({text: query});
-    // var searchedLogs = Logs.find({text: query}).fetch();
-    // var undoLogs = Undos.find({text: query}).fetch();
-    // var allLogs = searchedLogs.concat(undoLogs);
-    // return _.sortBy(allLogs, function(doc) {
-    //   return -doc.created_at;
-    // });
+    return Logs.find({text: query}, {sort: {created_at: -1}});
   };
 
   Template.paper.showMoreSearch = function () {
@@ -216,9 +208,9 @@ if (Meteor.isClient) {
     'keyup, #text': function (e, tmpl) {
       e.preventDefault();
       var val = tmpl.find('#text').value;
+      Session.set('searchKeyword', val);
+      window.localStorage.autosave = val;
       if (val && Meteor.userId()) {
-        Session.set('searchKeyword', val);
-        window.localStorage.autosave = val;
         Session.set('showSearch', true);
         Session.set('showPreview',true);
         Session.set('textPreview', val);
