@@ -3,15 +3,15 @@ Logs = new Meteor.Collection("logs");
 if (Meteor.isClient) {
 
   Meteor.startup(function () {
-    $('#text').focus();
+    $( "#text" ).focus();
   });
 
   ///// Demo /////
-  Session.set("demoContinue", true);
   // Run this when visitor is not signed in.
   if (!Meteor.userId()) {
     // Create a local collection called Demo to store the demo messages.
     var Demo = new Meteor.Collection(null);
+    Session.set("demoContinue", true);
     demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release,
                 "I'm the anti-social version of Twitter for introverts.\n\n这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
                 "This is a new log. You can create one by yourself.\n\n你现在就可以试着提交一条日志。快，我等着你。"];
@@ -133,9 +133,7 @@ if (Meteor.isClient) {
 
   ///// Date & Time /////
   Template.log.dateTime = function () {
-    var dateTime = moment(this.created_at).format("YYYY.MM.DD HH:mm:ss");
-    // var timeAgo = moment(this.created_at).fromNow();
-    return dateTime;
+    return moment(this.created_at).format("YYYY.MM.DD HH:mm:ss");
   };
 
   ///// Load more /////
@@ -197,12 +195,7 @@ if (Meteor.isClient) {
     // expression object for matching text with a pattern.
     // The 'i' flag means ignore case.
     var query = new RegExp(text, 'i');
-    var searchedLogs = Logs.find({text: query}).fetch();
-    var undoLogs = Undos.find().fetch();
-    var allLogs = searchedLogs.concat(undoLogs);
-    return _.sortBy(allLogs, function(doc) {
-      return -doc.created_at;
-    });
+    return Logs.find({text: query}, {sort: {created_at: -1}});
   };
 
   Template.paper.showMoreSearch = function () {
@@ -215,8 +208,9 @@ if (Meteor.isClient) {
     'keyup, #text': function (e, tmpl) {
       e.preventDefault();
       var val = tmpl.find('#text').value;
+      Session.set('searchKeyword', val);
+      window.localStorage.autosave = val;
       if (val && Meteor.userId()) {
-        Session.set('searchKeyword', val);
         Session.set('showSearch', true);
         Session.set('showPreview',true);
         Session.set('textPreview', val);
@@ -244,6 +238,11 @@ if (Meteor.isClient) {
   Template.paper.textPreview = function () {
     return Session.get('textPreview');
   };
+
+  ///// Autosave /////
+  Template.paper.autosave = function () {
+    return Session.get('searchKeyword') || window.localStorage.autosave;
+  }
 }
 
 if (Meteor.isServer) {
