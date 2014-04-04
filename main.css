@@ -33,9 +33,8 @@ h1 a, h1 a:hover {
   margin-bottom: 2em;
 }
 textarea {
-  width: 100%;
-  line-height: 150%;
-  resize: vertical;
+  max-height: 15em;
+  resize: none;
 }
 .form-control {
   font-size: 1em;
