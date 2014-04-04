@@ -3,6 +3,7 @@ Logs = new Meteor.Collection("logs");
 if (Meteor.isClient) {
 
   Meteor.startup(function () {
+    autoresize();
     $( "#text" ).focus();
   });
 
@@ -219,6 +220,7 @@ if (Meteor.isClient) {
         Session.set('searchMore', 10);
         Session.set('showPreview', false);
       }
+      autoresize();
     },
     'click .search-more': function (e, tmpl) {
       e.preventDefault();
@@ -242,6 +244,15 @@ if (Meteor.isClient) {
   ///// Autosave /////
   Template.paper.autosave = function () {
     return Session.get('searchKeyword') || window.localStorage.autosave;
+  };
+
+  ///// Autoresize /////
+  // thx http://phaistonian.pblogs.gr/expanding-textareas-the-easy-and-clean-way.html
+  function autoresize () {
+    var t = document.getElementsByTagName('textarea')[0];
+    var offset = !window.opera ? (t.offsetHeight - t.clientHeight) : (t.offsetHeight + parseInt(window.getComputedStyle(t, null).getPropertyValue('border-top-width')));
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight  + offset + 27) + 'px';
   }
 }
 
