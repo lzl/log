@@ -65,7 +65,8 @@ textarea {
 }
 .preview {
   position: relative;
-  border: 1px solid #46b8da;
+  border: 1px solid rgb(70, 184, 218);
+  border: 1px solid rgba(70, 184, 218, 0.7);
   border-radius: .25em;
   padding: 6px 12px;
   margin-bottom: 1em;
@@ -89,4 +90,14 @@ ul {
 }
 ol {
   list-style: decimal inside;
+}
+p {
+ -ms-word-break: break-all;
+     word-break: break-all;
+     /* Non standard for webkit */
+     word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+        hyphens: auto;
 }
