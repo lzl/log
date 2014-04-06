@@ -101,3 +101,7 @@ p {
    -moz-hyphens: auto;
         hyphens: auto;
 }
+code {
+  display: block;
+  overflow: auto;
+}
