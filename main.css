@@ -57,10 +57,12 @@ textarea {
   padding-left: .5em;
   background-color: white;
   opacity: 0;
+  -webkit-transition: opacity 0.1s 0 ease;
   transition: opacity 0.1s 0 ease;
 }
 .log:hover .dateTime {
   opacity: 1;
+  -webkit-transition: opacity 0.1s 0.3s ease;
   transition: opacity 0.1s 0.3s ease;
 }
 .preview {
@@ -99,6 +101,7 @@ p, code {
 
 -webkit-hyphens: auto;
    -moz-hyphens: auto;
+    -ms-hyphens: auto;
         hyphens: auto;
 
   white-space: normal;
