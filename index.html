@@ -27,7 +27,7 @@
     {{#if showPreview}}
     <div class="preview">
       {{#markdown}}{{textPreview}}{{/markdown}}
-      <div class="label label-info topRight">Preview</div>
+      <div class="label label-info topRight transparent">Preview</div>
     </div>
     {{/if}}
 
@@ -62,7 +62,7 @@
 <template name="log">
   <li class="line">
     {{#if showRemove}}
-      <a class="eraser">x</a>
+      <a class="eraser" title="Move to Trash">x</a>
     {{/if}}
     <div class="log">
       {{#markdown}}{{text}}{{/markdown}}

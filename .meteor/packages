@@ -6,5 +6,5 @@
 standard-app-packages
 accounts-password
 accounts-ui
-showdown
 accounts-meteor-developer
+showdown
