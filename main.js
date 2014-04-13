@@ -85,10 +85,13 @@ if (Meteor.isClient) {
         }
       }
 
+      Session.set('searchKeyword', undefined);
+      window.localStorage.autosave = "";
       tmpl.find('form').reset();
       tmpl.find('#text').focus();
       Session.set('showSearch', false);
       Session.set('showPreview', false);
+      autoresize();
     }
   });
 
