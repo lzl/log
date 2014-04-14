@@ -96,6 +96,10 @@ ol {
 .log > ul, .log > ol, .preview > ul, .preview > ol {
   margin-bottom: 10px;
 }
+.log > ul ul, .log > ul ol, .log > ol ol, .log > ol ul, .preview > ul ul, .preview > ul ol, .preview > ol ol, .preview > ol ul {
+  margin-left: 10px;
+}
+
 p, code {
  -ms-word-break: break-all;
      word-break: break-all;
