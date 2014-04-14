@@ -1,0 +1,30 @@
+.focus {
+  -webkit-animation: attract .5s ease-in 1s both;
+  animation: attract .5s ease-in 1s both;
+}
+
+@-webkit-keyframes attract {
+  0% {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  100% {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+  }
+}
+
+@keyframes attract {
+  0% {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  100% {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+  }
+}
