@@ -96,8 +96,17 @@ ol {
 .log > ul, .log > ol, .preview > ul, .preview > ol {
   margin-bottom: 10px;
 }
-.log > ul ul, .log > ul ol, .log > ol ol, .log > ol ul, .preview > ul ul, .preview > ul ol, .preview > ol ol, .preview > ol ul {
-  margin-left: 10px;
+.log > ul ul, .preview > ul ul {
+  margin-left: 20px;
+}
+.log > ol ol, .preview > ol ol {
+  margin-left: 20px;
+}
+.log > ul ol, .preview > ul ol {
+  margin-left: 17px;
+}
+.log > ol ul, .preview > ol ul {
+  margin-left: 36px;
 }
 
 p, code {
