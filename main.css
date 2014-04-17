@@ -93,6 +93,22 @@ ul {
 ol {
   list-style: decimal inside;
 }
+.log > ul, .log > ol, .preview > ul, .preview > ol {
+  margin-bottom: 10px;
+}
+.log > ul ul, .preview > ul ul {
+  margin-left: 18px;
+}
+.log > ol ol, .preview > ol ol {
+  margin-left: 18px;
+}
+.log > ul ol, .preview > ul ol {
+  margin-left: 20px;
+}
+.log > ol ul, .preview > ol ul {
+  margin-left: 34px;
+}
+
 p, code {
  -ms-word-break: break-all;
      word-break: break-all;
