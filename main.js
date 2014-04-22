@@ -113,7 +113,7 @@ if (Meteor.isClient) {
       // that log later.
       Undos.insert({
         _id: this._id,
-        text: "[Undo](#undo)",
+        text: "[Undo](#undo 'Move it back')",
         created_at: this.created_at
       });
       // Remove that log from server.
