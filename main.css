@@ -49,6 +49,7 @@ textarea {
 .eraser {
   margin-left: -1em;
   float: left;
+  cursor: pointer;
 }
 .dateTime {
   position: absolute;
