@@ -18,8 +18,8 @@
 <template name="paper">
   <div class="pencil">
     <form>
-      <textarea type="text" id="text" class="form-control" placeholder="What's new? (Markdown enabled)">{{autosave}}</textarea>
-      <button type="submit" class="btn btn-primary btn-block focus">Submit</button>
+      <textarea type="text" id="text" class="form-control" placeholder="What's new? / 今天有什么新发现？">{{autosave}}</textarea>
+      <button type="submit" class="btn btn-primary btn-block focus">Submit / 提交</button>
     </form>
   </div>
 
@@ -37,7 +37,7 @@
         {{> log}}
       {{/each}}
       {{#if showMoreSearch}}
-        <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>Load more</button>
+        <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>Load more / 显示更多</button>
       {{/if}}
     </ul>
     {{else}}
@@ -47,7 +47,7 @@
         {{/each}}
       </ul>
       {{#if showMore}}
-        <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>Load more</button>
+        <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>Load more / 显示更多</button>
       {{/if}}
     {{/if}}
   {{else}}
@@ -62,7 +62,7 @@
 <template name="log">
   <li class="line">
     {{#if showRemove}}
-      <a class="eraser" title="Move to Trash">x</a>
+      <a class="eraser" title="Move to Trash / 删除">x</a>
     {{/if}}
     <div class="log">
       {{#markdown}}{{text}}{{/markdown}}
