@@ -41,7 +41,7 @@ When I say please don't mess it hard, I know some of you will.
 
 Account can stop that happening, partly. Add the account feature to an app with Meteor is as simple as submit a log.
 
-1st, at the terminal, `meteor add accounts-password accounts-ui`. 2nd, at the code editor, add `{{loginButtons}}` to the html file properly. There is no 3rd step. Smile.
+1st, at the terminal, `meteor add accounts-password accounts-ui`. 2nd, at the code editor, add `{{> loginButtons}}` to the html file properly. There is no 3rd step. Smile.
 
 With the 'accounts-password' package enabled, we created another collection called 'users', along with the 'logs' one. That means five things at least. 1. There are two modes for every visitors now, sign in or sign out. 2. Each new user has an unique user id string. 3. We can insert that user id along with the text and timestamp into the Logs collection. 4. We can show and only show your logs, no other troubles. 5. We can make the text area form unavailable unless the visitor signed in as a user. Checkout the code to see how I have done that.
 
