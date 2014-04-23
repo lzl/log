@@ -27,7 +27,7 @@ h1 a, h1 a:hover {
 .login {
   position: absolute;
   top: 1em;
-  right: 1em;
+  right: 25px;
 }
 .pencil {
   margin-bottom: 2em;
