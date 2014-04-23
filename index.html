@@ -23,6 +23,10 @@
     </form>
   </div>
 
+  {{#if loggingIn}}
+  <div>Loading... / 耐心是一种美德。</div>
+  {{/if}}
+
   {{#if currentUser}}
     {{#if showPreview}}
     <div class="preview">
