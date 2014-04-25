@@ -282,6 +282,11 @@ if (Meteor.isClient) {
     $( "#text" ).focus();
     return false;
   });
+
+  Mousetrap.bind('u', function(e) {
+    location.reload();
+    return false;
+  });
 }
 
 if (Meteor.isServer) {
