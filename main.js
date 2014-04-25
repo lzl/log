@@ -276,6 +276,17 @@ if (Meteor.isClient) {
   UI.body.logCounts = function () {
     return Counts.get("logCounts");
   };
+
+  ///// Mousetrap /////
+  Mousetrap.bind(['n', '/'], function(e) {
+    $( "#text" ).focus();
+    return false;
+  });
+
+  Mousetrap.bind('u', function(e) {
+    location.reload();
+    return false;
+  });
 }
 
 if (Meteor.isServer) {

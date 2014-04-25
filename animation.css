@@ -1,6 +1,6 @@
 .focus {
-  -webkit-animation: attract .5s ease-in 1s both;
-  animation: attract .5s ease-in 1s both;
+  -webkit-animation: attract .5s ease-in both;
+  animation: attract .5s ease-in both;
 }
 
 @-webkit-keyframes attract {
