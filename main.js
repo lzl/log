@@ -22,11 +22,19 @@ if (Meteor.isClient) {
     // Create a local collection called Demo to store the demo messages.
     var Demo = new Meteor.Collection(null);
     Session.set("demoContinue", true);
-    demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release,
-                "I'm the anti-social version of Twitter for introverts.\n\n这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
-                "This is a new log. You can create one by yourself.\n\n你现在就可以试着提交一条日志。快，我等着你。"];
-    demoInsertTimes = 0;
+    // i18n begins
+    if (window.localStorage.lang === "zh-CN") {
+      demoLogs = ["我是一款[开源软件](http://github.com/lzl/log)，正运行在 Meteor " + Meteor.release + " 上。",
+                  "这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
+                  "你现在就可以试着提交一条日志。快，我等着你。"];
+    } else {
+      demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release + ".",
+                  "I'm the anti-social version of Twitter for introverts.",
+                  "This is a new log. You can create one by yourself."];
+    }
 
+    demoInsertTimes = 0;
+    // i18n ends
     function demoInsert () {
       if (demoInsertTimes < demoLogs.length) {
         Demo.insert({
@@ -84,9 +92,17 @@ if (Meteor.isClient) {
         });
         if (Demo.find().count() > demoLogs.length && Session.get("demoContinue")) {
           (function() {
-            demoLogs = ["You just got it. 你成功了。",
-                        "Congratulations! 恭喜你！",
-                        "Signup for free, then you can log and search your life.\n\n你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup.gif)"];
+            // i18n begins
+            if (window.localStorage.lang === "zh-CN") {
+              demoLogs = ["你成功了。",
+                          "恭喜你！",
+                          "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup.gif)"];
+            } else {
+              demoLogs = ["You just got it.",
+                          "Congratulations!",
+                          "Signup for free, then you can log and search your life.\n\n![Sign up now](/signup.gif)"];
+            }
+            // i18n ends
             demoInsertTimes = 0;
             timeout = Meteor.setInterval(demoInsert, 2000);
           })();
