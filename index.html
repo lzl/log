@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <h1><a href="/" title="total users: {{userCounts}} / total logs: {{logCounts}}">log</a></h1>
+  <h1><a href="/" title="{{i18n 'totalUsers'}} {{userCounts}} / {{i18n 'totalLogs'}} {{logCounts}}">{{i18n "title"}}</a></h1>
   <div class="login">
     {{> loginButtons align="right"}}
   </div>
@@ -19,13 +19,13 @@
 <template name="paper">
   <div class="pencil">
     <form>
-      <textarea type="text" id="text" class="form-control" placeholder="What's new? / 今天有什么新发现？">{{autosave}}</textarea>
-      <button type="submit" class="btn btn-primary btn-block focus">Submit / 提交</button>
+      <textarea type="text" id="text" class="form-control" placeholder="{{i18n "placeholder"}}">{{autosave}}</textarea>
+      <button type="submit" class="btn btn-primary btn-block focus">{{i18n "submit"}}</button>
     </form>
   </div>
 
   {{#if loggingIn}}
-  <div>Loading... / 立等可取。</div>
+  <div>{{i18n "loading"}}</div>
   {{/if}}
 
   {{#if currentUser}}
@@ -42,7 +42,7 @@
         {{> log}}
       {{/each}}
       {{#if showMoreSearch}}
-        <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>Load more / 显示更多</button>
+        <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>{{i18n "loadMore"}}</button>
       {{/if}}
     </ul>
     {{else}}
@@ -52,7 +52,7 @@
         {{/each}}
       </ul>
       {{#if showMore}}
-        <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>Load more / 显示更多</button>
+        <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>{{i18n "loadMore"}}</button>
       {{/if}}
     {{/if}}
   {{else}}
@@ -67,7 +67,7 @@
 <template name="log">
   <li class="line">
     {{#if showRemove}}
-      <a class="eraser" title="Move to Trash / 删除">x</a>
+      <a class="eraser" title="{{i18n 'eraser'}}">x</a>
     {{/if}}
     <div class="log">
       {{#markdown}}{{text}}{{/markdown}}

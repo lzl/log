@@ -3,6 +3,15 @@ Logs = new Meteor.Collection("logs");
 if (Meteor.isClient) {
 
   Meteor.startup(function () {
+    ///// i18n /////
+    var lang = window.localStorage.lang || navigator.language || navigator.userLanguage;
+    if (lang === "zh-CN") {
+      i18n.setLanguage('zh-CN');
+    } else {
+      i18n.setDefaultLanguage('en-US');
+    }
+    window.localStorage.lang = lang;
+    ///// resize & focus /////
     autoresize();
     $( "#text" ).focus();
   });
@@ -111,9 +120,12 @@ if (Meteor.isClient) {
       // Insert the Undo button with that
       // log's id information to retrieve
       // that log later.
+      var undo = i18n('undo');
+      var undoTitle = i18n('undoTitle');
+      var text = '[' + undo + '](#undo "' + undoTitle + '")';
       Undos.insert({
         _id: this._id,
-        text: "[Undo / 撤销](#undo 'Move it back / 一键还原')",
+        text: text,
         created_at: this.created_at
       });
       // Remove that log from server.
@@ -286,6 +298,43 @@ if (Meteor.isClient) {
   Mousetrap.bind('u', function(e) {
     location.reload();
     return false;
+  });
+  Mousetrap.bind('l', function(e) {
+    var lang = window.localStorage.lang;
+    if (lang === 'en-US') {
+      i18n.setLanguage('zh-CN');
+      window.localStorage.lang = 'zh-CN';
+    } else {
+      i18n.setLanguage('en-US');
+      window.localStorage.lang = 'en-US';
+    }
+    return false;
+  });
+
+  ///// i18n /////
+  i18n.map('en-US', {
+    title: "log",
+    loading: "Loading...",
+    placeholder: "What's new?",
+    submit: "Submit",
+    eraser: "Move to Trash",
+    undo: "Undo",
+    undoTitle: "Move it back",
+    loadMore: "Load more",
+    totalUsers: "total users:",
+    totalLogs: "total logs:"
+  });
+  i18n.map('zh-CN', {
+    title: "日志",
+    loading: "立等可取",
+    placeholder: "今天有什么新发现？",
+    submit: "提交",
+    eraser: "删除",
+    undo: "撤销",
+    undoTitle: "一键还原",
+    loadMore: "显示更多",
+    totalUsers: "用户总数:",
+    totalLogs: "日志总量:"
   });
 }
 
