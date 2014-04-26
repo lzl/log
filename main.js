@@ -320,6 +320,7 @@ if (Meteor.isClient) {
     eraser: "Move to Trash",
     undo: "Undo",
     undoTitle: "Move it back",
+    preview: "Preview",
     loadMore: "Load more",
     totalUsers: "total users:",
     totalLogs: "total logs:"
@@ -332,6 +333,7 @@ if (Meteor.isClient) {
     eraser: "删除",
     undo: "撤销",
     undoTitle: "一键还原",
+    preview: "预览",
     loadMore: "显示更多",
     totalUsers: "用户总数:",
     totalLogs: "日志总量:"
