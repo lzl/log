@@ -327,7 +327,7 @@ if (Meteor.isClient) {
   });
   i18n.map('zh-CN', {
     title: "日志",
-    loading: "立等可取",
+    loading: "立等可取...",
     placeholder: "今天有什么新发现？",
     submit: "提交",
     eraser: "删除",
