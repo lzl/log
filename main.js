@@ -30,7 +30,7 @@ if (Meteor.isClient) {
     } else {
       demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release + ".",
                   "I'm the anti-social version of Twitter for introverts.",
-                  "This is a new log. You can create one by yourself."];
+                  "This is a new log. You can submit one by yourself, now."];
     }
 
     demoInsertTimes = 0;
@@ -96,11 +96,11 @@ if (Meteor.isClient) {
             if (window.localStorage.lang === "zh-CN") {
               demoLogs = ["你成功了。",
                           "恭喜你！",
-                          "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup.gif)"];
+                          "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup-cn.gif)"];
             } else {
               demoLogs = ["You just got it.",
                           "Congratulations!",
-                          "Signup for free, then you can log and search your life.\n\n![Sign up now](/signup.gif)"];
+                          "Signup for free, then you can log and search your life.\n\n![Sign up now](/signup-en.gif)"];
             }
             // i18n ends
             demoInsertTimes = 0;
