@@ -3,6 +3,15 @@ Logs = new Meteor.Collection("logs");
 if (Meteor.isClient) {
 
   Meteor.startup(function () {
+    ///// i18n /////
+    var lang = window.localStorage.lang || navigator.language || navigator.userLanguage;
+    if (lang === "zh-CN") {
+      i18n.setLanguage('zh-CN');
+    } else {
+      i18n.setDefaultLanguage('en-US');
+    }
+    window.localStorage.lang = lang;
+    ///// resize & focus /////
     autoresize();
     $( "#text" ).focus();
   });
@@ -13,9 +22,17 @@ if (Meteor.isClient) {
     // Create a local collection called Demo to store the demo messages.
     var Demo = new Meteor.Collection(null);
     Session.set("demoContinue", true);
-    demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release,
-                "I'm the anti-social version of Twitter for introverts.\n\n这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
-                "This is a new log. You can create one by yourself.\n\n你现在就可以试着提交一条日志。快，我等着你。"];
+    // i18n begins
+    if (window.localStorage.lang === "zh-CN") {
+      demoLogs = ["我是一款[开源软件](http://github.com/lzl/log)，正运行在 Meteor " + Meteor.release + " 上。",
+                  "这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
+                  "你现在就可以试着提交一条日志。快，我等着你。"];
+    } else {
+      demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release + ".",
+                  "I'm the anti-social version of Twitter for introverts.",
+                  "This is a new log. You can submit one by yourself, now."];
+    }
+    // i18n ends
     demoInsertTimes = 0;
 
     function demoInsert () {
@@ -75,9 +92,17 @@ if (Meteor.isClient) {
         });
         if (Demo.find().count() > demoLogs.length && Session.get("demoContinue")) {
           (function() {
-            demoLogs = ["You just got it. 你成功了。",
-                        "Congratulations! 恭喜你！",
-                        "Signup for free, then you can log and search your life.\n\n你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup.gif)"];
+            // i18n begins
+            if (window.localStorage.lang === "zh-CN") {
+              demoLogs = ["你成功了。",
+                          "恭喜你！",
+                          "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup-cn.gif)"];
+            } else {
+              demoLogs = ["You just got it.",
+                          "Congratulations!",
+                          "Signup for free, then you can log and search your life.\n\n![Sign up now](/signup-en.gif)"];
+            }
+            // i18n ends
             demoInsertTimes = 0;
             timeout = Meteor.setInterval(demoInsert, 2000);
           })();
@@ -111,9 +136,12 @@ if (Meteor.isClient) {
       // Insert the Undo button with that
       // log's id information to retrieve
       // that log later.
+      var undo = i18n('undo');
+      var undoTitle = i18n('undoTitle');
+      var text = '[' + undo + '](#undo "' + undoTitle + '")';
       Undos.insert({
         _id: this._id,
-        text: "[Undo / 撤销](#undo 'Move it back / 一键还原')",
+        text: text,
         created_at: this.created_at
       });
       // Remove that log from server.
@@ -214,9 +242,9 @@ if (Meteor.isClient) {
       var val = tmpl.find('#text').value;
       Session.set('searchKeyword', val);
       window.localStorage.autosave = val;
-      if (val && Meteor.userId()) {
+      if (val) {
         Session.set('showSearch', true);
-        Session.set('showPreview',true);
+        Session.set('showPreview', true);
         Session.set('textPreview', val);
       } else {
         Session.set('showSearch', false);
@@ -286,6 +314,49 @@ if (Meteor.isClient) {
   Mousetrap.bind('u', function(e) {
     location.reload();
     return false;
+  });
+  Mousetrap.bind('l', function(e) {
+    var lang = window.localStorage.lang;
+    if (lang === 'en-US') {
+      i18n.setLanguage('zh-CN');
+      window.localStorage.lang = 'zh-CN';
+    } else {
+      i18n.setLanguage('en-US');
+      window.localStorage.lang = 'en-US';
+    }
+    return false;
+  });
+
+  ///// i18n /////
+  i18n.map('en-US', {
+    title: "log",
+    loading: "Loading...",
+    placeholder: "What's new?",
+    submit: "Submit",
+    eraser: "Move to Trash",
+    undo: "Undo",
+    undoTitle: "Move it back",
+    preview: "Preview",
+    loadMore: "Load more",
+    totalUsers: "total users:",
+    totalLogs: "total logs:"
+  });
+  i18n.map('zh-CN', {
+    title: "日志",
+    loading: "立等可取...",
+    placeholder: "今天有什么新发现？",
+    submit: "提交",
+    eraser: "删除",
+    undo: "撤销",
+    undoTitle: "一键还原",
+    preview: "预览",
+    loadMore: "显示更多",
+    totalUsers: "用户总数:",
+    totalLogs: "日志总量:"
+  });
+  // via https://github.com/meteor/meteor/issues/266
+  Deps.autorun(function () {
+    document.title = i18n("title");
   });
 }
 
