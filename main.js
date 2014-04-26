@@ -338,6 +338,10 @@ if (Meteor.isClient) {
     totalUsers: "用户总数:",
     totalLogs: "日志总量:"
   });
+  // via https://github.com/meteor/meteor/issues/266
+  Deps.autorun(function () {
+    document.title = i18n("title");
+  });
 }
 
 if (Meteor.isServer) {
