@@ -32,9 +32,9 @@ if (Meteor.isClient) {
                   "I'm the anti-social version of Twitter for introverts.",
                   "This is a new log. You can submit one by yourself, now."];
     }
-
-    demoInsertTimes = 0;
     // i18n ends
+    demoInsertTimes = 0;
+
     function demoInsert () {
       if (demoInsertTimes < demoLogs.length) {
         Demo.insert({
