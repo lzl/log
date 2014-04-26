@@ -28,14 +28,14 @@
   <div>{{i18n "loading"}}</div>
   {{/if}}
 
-  {{#if currentUser}}
-    {{#if showPreview}}
-    <div class="preview">
-      {{#markdown}}{{textPreview}}{{/markdown}}
-      <div class="label label-info topRight transparent">Preview</div>
-    </div>
-    {{/if}}
+  {{#if showPreview}}
+  <div class="preview">
+    {{#markdown}}{{textPreview}}{{/markdown}}
+    <div class="label label-info topRight transparent">Preview</div>
+  </div>
+  {{/if}}
 
+  {{#if currentUser}}
     {{#if showSearch}}
     <ul>
       {{#each searchedLogs}}

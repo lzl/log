@@ -226,9 +226,9 @@ if (Meteor.isClient) {
       var val = tmpl.find('#text').value;
       Session.set('searchKeyword', val);
       window.localStorage.autosave = val;
-      if (val && Meteor.userId()) {
+      if (val) {
         Session.set('showSearch', true);
-        Session.set('showPreview',true);
+        Session.set('showPreview', true);
         Session.set('textPreview', val);
       } else {
         Session.set('showSearch', false);
