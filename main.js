@@ -136,9 +136,10 @@ if (Meteor.isClient) {
       // Insert the Undo button with that
       // log's id information to retrieve
       // that log later.
+      var deleted = i18n('deleted');
       var undo = i18n('undo');
       var undoTitle = i18n('undoTitle');
-      var text = '[' + undo + '](#undo "' + undoTitle + '")';
+      var text = deleted + '[' + undo + '](#undo "' + undoTitle + '")';
       Undos.insert({
         _id: this._id,
         text: text,
@@ -334,8 +335,9 @@ if (Meteor.isClient) {
     placeholder: "What's new?",
     submit: "Submit",
     eraser: "Move to Trash",
-    undo: "Undo",
-    undoTitle: "Move it back",
+    deleted: "Deleted. Regret? ",
+    undo: "Get it back",
+    undoTitle: "Be careful next time :D",
     preview: "Preview",
     loadMore: "Load more",
     totalUsers: "total users:",
@@ -347,7 +349,8 @@ if (Meteor.isClient) {
     placeholder: "今天有什么新发现？",
     submit: "提交",
     eraser: "删除",
-    undo: "撤销",
+    deleted: "已删除。误操作？",
+    undo: "可撤销",
     undoTitle: "一键还原",
     preview: "预览",
     loadMore: "显示更多",
