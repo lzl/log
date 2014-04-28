@@ -24,11 +24,11 @@ if (Meteor.isClient) {
     Session.set("demoContinue", true);
     // i18n begins
     if (window.localStorage.lang === "zh-CN") {
-      demoLogs = ["我是一款[开源软件](http://github.com/lzl/log)，正运行在 Meteor " + Meteor.release + " 上。",
+      demoLogs = ["我是一款[开源软件](https://github.com/lzl/log)，正运行在 Meteor " + Meteor.release + " 上。",
                   "这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
                   "你现在就可以试着提交一条日志。快，我等着你。"];
     } else {
-      demoLogs = ["I'm [open-sourced](http://github.com/lzl/log). Running on Meteor " + Meteor.release + ".",
+      demoLogs = ["I'm [open-sourced](https://github.com/lzl/log). Running on Meteor " + Meteor.release + ".",
                   "I'm the anti-social version of Twitter for introverts.",
                   "This is a new log. You can submit one by yourself, now."];
     }
