@@ -51,20 +51,34 @@ textarea {
   float: left;
   cursor: pointer;
 }
+.fakeDateTime {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 209px;
+  height: 27px;
+  opacity: 0;
+}
 .dateTime {
   position: absolute;
   top: 0;
   right: 0;
+  opacity: 0;
   padding-left: .5em;
   background-color: white;
-  opacity: 0;
-  -webkit-transition: opacity 0.1s 0 ease;
-  transition: opacity 0.1s 0 ease;
+  -webkit-transition: all 0.1s 0 ease;
+  transition: all 0.1s 0 ease;
 }
 .log:hover .dateTime {
+  top: 0;
+  right: 0;
   opacity: 1;
-  -webkit-transition: opacity 0.1s 0.3s ease;
-  transition: opacity 0.1s 0.3s ease;
+  -webkit-transition: all 0.1s 0.3s ease;
+  transition: all 0.1s 0.3s ease;
+}
+.dateTime:hover, .fakeDateTime:hover + .dateTime {
+  top: -23px !important;
+  background-color: transparent !important;
 }
 .preview {
   position: relative;
