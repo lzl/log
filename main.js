@@ -312,7 +312,7 @@ if (Meteor.isClient) {
     return false;
   });
 
-  Mousetrap.bind('u', function(e) {
+  Mousetrap.bind(['u', '.'], function(e) {
     location.reload();
     return false;
   });
@@ -326,6 +326,9 @@ if (Meteor.isClient) {
       window.localStorage.lang = 'en-US';
     }
     return false;
+  });
+  Mousetrap.bind('?', function(e) {
+    Session.get('showWelcome') ? Session.set('showWelcome', false) : Session.set('showWelcome', true);
   });
 
   ///// i18n /////
@@ -341,7 +344,9 @@ if (Meteor.isClient) {
     preview: "Preview",
     loadMore: "Load more",
     totalUsers: "total users:",
-    totalLogs: "total logs:"
+    totalLogs: "total logs:",
+    welcome: "Welcome",
+    welcomeText: "\nThank you for joining. I wish this app will push more value back to you while using it with energy from you.\n\nMy name is Zunlong Lee, you can call me [LZL](http://lizunlong.com) for short. I need a private place to rewired what I found valuable from the Internet or my mind. Then I made this app after learning coding with the awesome Meteor.\n\nFocus is the most important quality if you want to flourish and prosper in the Internet world. Why? Because today is full of distractions. People made things for the things they want by hunting our limited attention. It's not the Internet's or the builders' fault. They are booming our technology. And they are building a better world for all human.\n\nThe one thing we should think about in our head everyday is this: [What is my must?](http://vimeo.com/77436516) Find your must through the distracted and abundant world. Then be focus on yours. That's it.\n\nIf you agree with me, I believe you are, please submit the valuable bits at the top text area as pursuing your must. Thank you."
   });
   i18n.map('zh-CN', {
     title: "日志",
@@ -355,12 +360,24 @@ if (Meteor.isClient) {
     preview: "预览",
     loadMore: "显示更多",
     totalUsers: "用户总数:",
-    totalLogs: "日志总量:"
+    totalLogs: "日志总量:",
+    welcome: "欢迎光临",
+    welcomeText: "\n谢谢捧场。欢迎在这里记录、检索你的点滴发现。\n\n我叫[李尊龙](http://lizunlong.com/)，是这款应用的创造者。我希望拥有一处私密、安静的小角落，于此记录任何琐碎的信息，同时能够通过只言片语回忆起那时那刻。这里便是我为自己建造的小角落，幸运的是，互联网允许我把它以几近零成本的代价复制到你的时空中去，然后让你——它的唯一主人——来选择是否在此处长留。\n\n『你每天上网都做些什么？』因为我很宅，所以不少亲戚问过我这个问题。我总是支支吾吾，找不到合适的词语作答。后来，也许是因为惯性，我时常会自我怀疑式的自问『我每天都在干些什么啊？』\n\n『专注』是一项极为重要的技能，集全力释于一点，事半功倍，但易说难做。互联网本质上携有一股『分心』氛围，一个超级链接嵌套着多个超级链接，循环无穷，无论你有多么充裕的时间，理论上都能够被它抽空并内化为更多能量去抽空其他人。\n\n我们的生活本身就是在不断分心，只不过互联网让这一趋势变得更加明显。『分心』意味着你有机会接触到未知且有趣的信息，这远比在闭塞环境下不得不专注于某件维持生计的事物要幸福得多。\n\n因此，最好的情况是在一个允许分心的环境下找到那件值得为之专注的事物。幸运的是，我们正身处这一环境之中。\n\n如果你同意我的观点，那么请努力和我一起在这里记录生活中的点滴发现，发现美好的事物，发现属于你的『专注』。在这一过程中，使用哪个工具并不重要，最重要的是在头脑中保留一个从复杂生活中抽取属于自己的简单真理的想法，就足够了。"
   });
   // via https://github.com/meteor/meteor/issues/266
   Deps.autorun(function () {
     document.title = i18n("title");
   });
+
+  ///// Welcome /////
+  Template.paper.showWelcome = function () {
+    if (Session.get("showWelcome") || Logs.find().count() === 0) {
+      return true;
+    }
+  }
+  Template.paper.welcome = function () {
+    return i18n("welcomeText");
+  }
 }
 
 if (Meteor.isServer) {

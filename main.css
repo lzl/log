@@ -83,7 +83,7 @@ textarea {
   top: -23px !important;
   background-color: transparent !important;
 }
-.preview {
+.border {
   position: relative;
   border: 1px solid rgb(70, 184, 218);
   border: 1px solid rgba(70, 184, 218, 0.7);
