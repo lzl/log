@@ -42,6 +42,9 @@ textarea {
 .form-control {
   font-size: 1em;
 }
+.loading {
+  padding-bottom: 1em;
+}
 .line {
   margin-bottom: 1em;
   list-style-type: none;
