@@ -4,11 +4,11 @@ if (Meteor.isClient) {
 
   Meteor.startup(function () {
     ///// i18n /////
-    var lang = window.localStorage.lang || navigator.language || navigator.userLanguage;
-    if (lang === "zh-CN") {
-      i18n.setLanguage('zh-CN');
+    var lang = window.localStorage.lang || (navigator.language || navigator.browserLanguage).toLowerCase();
+    if (lang === "zh-cn") {
+      i18n.setLanguage('zh-cn');
     } else {
-      i18n.setDefaultLanguage('en-US');
+      i18n.setDefaultLanguage('en-us');
     }
     window.localStorage.lang = lang;
     ///// resize & focus /////
@@ -17,13 +17,13 @@ if (Meteor.isClient) {
   });
 
   ///// Demo /////
-  // Run this when visitor is not signed in.
+  // Run this if visitor is not signed in.
   if (!Meteor.userId()) {
     // Create a local collection called Demo to store the demo messages.
     var Demo = new Meteor.Collection(null);
     Session.set("demoContinue", true);
     // i18n begins
-    if (window.localStorage.lang === "zh-CN") {
+    if (window.localStorage.lang === "zh-cn") {
       demoLogs = ["我是一款[开源软件](https://github.com/lzl/log)，正运行在 Meteor " + Meteor.release + " 上。",
                   "这里只允许你自言自语，不被他人打扰，更不被他人偷窥。",
                   "你现在就可以试着提交一条日志。快，我等着你。"];
@@ -93,7 +93,7 @@ if (Meteor.isClient) {
         if (Demo.find().count() > demoLogs.length && Session.get("demoContinue")) {
           (function() {
             // i18n begins
-            if (window.localStorage.lang === "zh-CN") {
+            if (window.localStorage.lang === "zh-cn") {
               demoLogs = ["你成功了。",
                           "恭喜你！",
                           "你可以选择免费注册我们的服务，从而储存并搜索今后提交的所有日志。\n\n![Sign up now](/signup-cn.gif)"];
@@ -121,7 +121,7 @@ if (Meteor.isClient) {
   });
 
   ///// Delete & Undo/////
-  // Create a local collection called Trash.
+  // Create local collections called Trash and Undos.
   var Trash = new Meteor.Collection(null);
   var Undos = new Meteor.Collection(null);
 
@@ -311,19 +311,18 @@ if (Meteor.isClient) {
     $( "#text" ).focus();
     return false;
   });
-
   Mousetrap.bind(['u', '.'], function(e) {
     location.reload();
     return false;
   });
   Mousetrap.bind('l', function(e) {
     var lang = window.localStorage.lang;
-    if (lang === 'en-US') {
-      i18n.setLanguage('zh-CN');
-      window.localStorage.lang = 'zh-CN';
+    if (lang === 'en-us') {
+      i18n.setLanguage('zh-cn');
+      window.localStorage.lang = 'zh-cn';
     } else {
-      i18n.setLanguage('en-US');
-      window.localStorage.lang = 'en-US';
+      i18n.setLanguage('en-us');
+      window.localStorage.lang = 'en-us';
     }
     return false;
   });
@@ -332,7 +331,7 @@ if (Meteor.isClient) {
   });
 
   ///// i18n /////
-  i18n.map('en-US', {
+  i18n.map('en-us', {
     title: "log",
     loading: "Loading...",
     placeholder: "What's new?",
@@ -348,7 +347,7 @@ if (Meteor.isClient) {
     welcome: "Welcome",
     welcomeText: "\nThank you for joining. I wish this app will push more value back to you while using it with energy from you.\n\nMy name is Zunlong Lee, you can call me [LZL](http://lizunlong.com) for short. To be honest, I need a private place to rewired what I found valuable from the Internet or my mind. So I made this app after learning coding with the awesome [Meteor](https://www.meteor.com/).\n\nFocus is the most important quality if you want to flourish and prosper in the Internet world. Why? Because today is full of distractions. People made things for the things they want by hunting our limited attention. It's not the Internet's or the builders' fault. They are booming our technology. And they are building a better world for all human.\n\nThe one thing we should think about in our head everyday is this: [What is my must?](http://vimeo.com/77436516) Find your must through the distracted and abundant world. Then focus on your own.\n\nIf you agree with me, I believe you are, please submit the valuable bits at the top text area as pursuing your must. Thank you."
   });
-  i18n.map('zh-CN', {
+  i18n.map('zh-cn', {
     title: "日志",
     loading: "立等可取...",
     placeholder: "今天有什么新发现？",
@@ -373,11 +372,11 @@ if (Meteor.isClient) {
   Template.paper.showWelcome = function () {
     if (Session.get("showWelcome") || Logs.find().count() === 0) {
       return true;
-    }
+    };
   }
   Template.paper.welcome = function () {
     return i18n("welcomeText");
-  }
+  };
 }
 
 if (Meteor.isServer) {
