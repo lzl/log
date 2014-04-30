@@ -19,9 +19,12 @@ h1, h2, h3 {
   margin-bottom: 1em;
   font-weight: bold;
 }
-h1 a, h1 a:hover {
+h1 a, h1 a:hover, h1 a:visited {
   color: #333;
   text-decoration: none;
+}
+a:visited {
+  color: #639;
 }
 
 .login {
@@ -39,6 +42,9 @@ textarea {
 .form-control {
   font-size: 1em;
 }
+.loading {
+  padding-bottom: 1em;
+}
 .line {
   margin-bottom: 1em;
   list-style-type: none;
@@ -51,22 +57,36 @@ textarea {
   float: left;
   cursor: pointer;
 }
+.fakeDateTime {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 209px;
+  height: 27px;
+  opacity: 0;
+}
 .dateTime {
   position: absolute;
   top: 0;
   right: 0;
+  opacity: 0;
   padding-left: .5em;
   background-color: white;
-  opacity: 0;
-  -webkit-transition: opacity 0.1s 0 ease;
-  transition: opacity 0.1s 0 ease;
+  -webkit-transition: all 0.1s 0 ease;
+  transition: all 0.1s 0 ease;
 }
 .log:hover .dateTime {
+  top: 0;
+  right: 0;
   opacity: 1;
-  -webkit-transition: opacity 0.1s 0.3s ease;
-  transition: opacity 0.1s 0.3s ease;
+  -webkit-transition: all 0.1s 0.3s ease;
+  transition: all 0.1s 0.3s ease;
 }
-.preview {
+.dateTime:hover, .fakeDateTime:hover + .dateTime {
+  top: -23px !important;
+  background-color: transparent !important;
+}
+.border {
   position: relative;
   border: 1px solid rgb(70, 184, 218);
   border: 1px solid rgba(70, 184, 218, 0.7);

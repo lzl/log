@@ -25,17 +25,24 @@
   </div>
 
   {{#if loggingIn}}
-  <div>{{i18n "loading"}}</div>
+  <div class="loading">{{i18n "loading"}}</div>
   {{/if}}
 
   {{#if showPreview}}
-  <div class="preview">
+  <div class="border">
     {{#markdown}}{{textPreview}}{{/markdown}}
     <div class="label label-info topRight transparent">{{i18n "preview"}}</div>
   </div>
   {{/if}}
 
   {{#if currentUser}}
+    {{#if showWelcome}}
+    <div class="border">
+      {{#markdown}}{{welcome}}{{/markdown}}
+      <div class="label label-info topRight transparent">{{i18n "welcome"}}</div>
+    </div>
+    {{/if}}
+
     {{#if showSearch}}
     <ul>
       {{#each searchedLogs}}
@@ -71,6 +78,7 @@
     {{/if}}
     <div class="log">
       {{#markdown}}{{text}}{{/markdown}}
+      <span class="fakeDateTime"></span>
       <span class="dateTime">{{dateTime}}</span>
     </div>
   </li>
