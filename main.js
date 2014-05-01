@@ -3,18 +3,19 @@ Logs = new Meteor.Collection("logs");
 if (Meteor.isClient) {
 
   Meteor.startup(function () {
-    ///// i18n /////
-    var lang = window.localStorage.lang || (navigator.language || navigator.browserLanguage).toLowerCase();
-    if (lang === "zh-cn") {
-      i18n.setLanguage('zh-cn');
-    } else {
-      i18n.setDefaultLanguage('en-us');
-    }
-    window.localStorage.lang = lang;
     ///// resize & focus /////
     autoresize();
     $( "#text" ).focus();
   });
+
+  ///// i18n /////
+  var lang = window.localStorage.lang || (navigator.language || navigator.browserLanguage).toLowerCase();
+  window.localStorage.lang = lang;
+  if (lang === "zh-cn") {
+    i18n.setLanguage('zh-cn');
+  } else {
+    i18n.setDefaultLanguage('en-us');
+  }
 
   ///// Demo /////
   // Run this if visitor is not signed in.
