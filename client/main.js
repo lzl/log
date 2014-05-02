@@ -76,11 +76,7 @@ Template.paper.events({
     var val = tmpl.find('#text').value;
 
     if (val && Meteor.userId()) {
-      Logs.insert({
-        text: val,
-        user_id: Meteor.userId(),
-        created_at: new Date()
-      });
+      Meteor.call('submit', val);
     }
 
     if (val && !Meteor.userId()) {
@@ -158,7 +154,7 @@ Template.log.events({
     // on the server. That variable contains all
     // information about that removed log, including
     // the timestamp when it was created.
-    Logs.insert(undoLog);
+    Meteor.call('undo', undoLog);
   }
 });
 

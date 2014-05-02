@@ -15,9 +15,6 @@ Meteor.publish("searchedLogs", function (text, limit) {
 });
 
 Logs.allow({
-  insert: function (userId, doc) {
-    return doc.user_id === userId;
-  },
   remove: function (userId, doc) {
     return doc.user_id === userId;
   }
