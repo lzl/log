@@ -10,3 +10,5 @@ accounts-meteor-developer
 showdown
 force-ssl
 appcache
+audit-argument-checks
+browser-policy
