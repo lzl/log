@@ -368,10 +368,27 @@ Deps.autorun(function () {
 
 ///// Welcome /////
 Template.paper.showWelcome = function () {
-  if (Session.get("showWelcome") || Logs.find().count() === 0) {
+  Meteor.call('showWelcome', function (error, result) {
+    check(result, Boolean);
+    if (result) {
+      Session.set("showWelcome", true);
+    } else {
+      Session.set("showWelcome", false);
+    }
+  });
+  if (Session.get("showWelcome")) {
     return true;
-  };
+  } else {
+    return false;
+  }
 }
 Template.paper.welcome = function () {
   return i18n("welcomeText");
 };
+
+///// Methods /////
+Meteor.methods({
+  showWelcome: function () {
+    return Logs.find().count() === 0;
+  }
+});
