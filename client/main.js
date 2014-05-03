@@ -327,7 +327,7 @@ Mousetrap.bind('?', function(e) {
 ///// i18n /////
 i18n.map('en-us', {
   title: "log",
-  loading: "Loading...",
+  loading: "Loading...|Bear with me. I am working hard.|Your patience is all I need.",
   placeholder: "What's new?",
   submit: "Submit",
   eraser: "Move to Trash",
@@ -343,7 +343,7 @@ i18n.map('en-us', {
 });
 i18n.map('zh-cn', {
   title: "日志",
-  loading: "立等可取...",
+  loading: "立等可取...|载入中，莫急。|等待返回信号...|正在从大洋彼岸拉数据...|请稍候...",
   placeholder: "今天有什么新发现？",
   submit: "提交",
   eraser: "删除",
@@ -384,3 +384,10 @@ Meteor.methods({
     return Logs.find().count() === 0;
   }
 });
+
+///// Loading /////
+Template.paper.loading = function () {
+  var loading = i18n('loading').split("|");
+  var rand = loading[Math.floor(Math.random() * loading.length)];
+  return rand;
+};
