@@ -19,7 +19,7 @@ if (lang === "zh-cn") {
 if (!Meteor.userId()) {
   // Create a local collection called Demo to store the demo messages.
   var Demo = new Meteor.Collection(null);
-  Session.set("demoContinue", true);
+  Session.set('demoContinue', true);
   // i18n begins
   if (window.localStorage.lang === "zh-cn") {
     demoLogs = ["我是一款[开源软件](https://github.com/lzl/log)，正运行在 Meteor " + Meteor.release + " 上。",
@@ -84,7 +84,7 @@ Template.paper.events({
         text: val,
         created_at: new Date()
       });
-      if (Demo.find().count() > demoLogs.length && Session.get("demoContinue")) {
+      if (Demo.find().count() > demoLogs.length && Session.get('demoContinue')) {
         (function() {
           // i18n begins
           if (window.localStorage.lang === "zh-cn") {
@@ -100,7 +100,7 @@ Template.paper.events({
           demoInsertTimes = 0;
           timeout = Meteor.setInterval(demoInsert, 2000);
         })();
-        Session.set("demoContinue", false);
+        Session.set('demoContinue', false);
       }
     }
 
@@ -294,10 +294,10 @@ Meteor.subscribe("userCounts");
 Meteor.subscribe("logCounts");
 
 UI.body.userCounts = function () {
-  return Counts.get("userCounts");
+  return Counts.get('userCounts');
 };
 UI.body.logCounts = function () {
-  return Counts.get("logCounts");
+  return Counts.get('logCounts');
 };
 
 ///// Mousetrap /////
@@ -367,19 +367,15 @@ Template.paper.showWelcome = function () {
   Meteor.call('showWelcome', function (error, result) {
     check(result, Boolean);
     if (result) {
-      Session.set("showWelcome", true);
+      Session.set('showWelcome', true);
     } else {
-      Session.set("showWelcome", false);
+      Session.set('showWelcome', false);
     }
   });
-  if (Session.get("showWelcome")) {
-    return true;
-  } else {
-    return false;
-  }
+  return Session.get('showWelcome');
 }
 Template.paper.welcome = function () {
-  return i18n("welcomeText");
+  return i18n('welcomeText');
 };
 
 ///// Methods /////
