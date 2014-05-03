@@ -17,12 +17,12 @@ Meteor.methods({
     });
   },
   undo: function (val) {
-    check(val, Match.ObjectIncluding({
+    check(val, {
       _id: String,
       text: String,
       user_id: String,
       created_at: Date
-    }));
+    });
     var userId = this.userId;
     if (!userId) {
       throw new Meteor.Error(401, "The request requires user authentication.");
