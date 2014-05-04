@@ -114,19 +114,19 @@ ul {
 ol {
   list-style: decimal inside;
 }
-.log > ul, .log > ol, .preview > ul, .preview > ol {
+.log > ul, .log > ol, .border > ul, .border > ol {
   margin-bottom: 10px;
 }
-.log > ul ul, .preview > ul ul {
+.log > ul ul, .border > ul ul {
   margin-left: 18px;
 }
-.log > ol ol, .preview > ol ol {
+.log > ol ol, .border > ol ol {
   margin-left: 18px;
 }
-.log > ul ol, .preview > ul ol {
+.log > ul ol, .border > ul ol {
   margin-left: 20px;
 }
-.log > ol ul, .preview > ol ul {
+.log > ol ul, .border > ol ul {
   margin-left: 34px;
 }
 
