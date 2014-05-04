@@ -53,7 +53,10 @@ textarea {
   position: relative;
 }
 .eraser {
-  margin-left: -1em;
+  /*Increasing the Clickable Area of Inline Links*/
+  /*thx http://joshnh.com/2012/09/06/increasing-the-clickable-area-of-inline-links/*/
+  margin: -.5em -.5em -.5em -3em;
+  padding: .5em .5em .5em 2em;
   float: left;
   cursor: pointer;
 }
