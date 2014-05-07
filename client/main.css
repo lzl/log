@@ -19,14 +19,14 @@ h1, h2, h3 {
   margin-bottom: 1em;
   font-weight: bold;
 }
-h1 a, h1 a:hover, h1 a:visited {
-  color: #333;
-  text-decoration: none;
-}
 a:visited {
   color: #639;
 }
 
+.title, .title:hover, .title:visited {
+  color: #333;
+  text-decoration: none;
+}
 .login {
   position: absolute;
   top: 1em;
@@ -112,7 +112,7 @@ img {
   width: 100%;
 }
 ul {
-  list-style: square inside;
+  list-style: disc inside;
 }
 ol {
   list-style: decimal inside;
