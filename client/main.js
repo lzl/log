@@ -74,6 +74,7 @@ Template.paper.events({
   'submit form': function (e, tmpl) {
     e.preventDefault();
     var val = tmpl.find('#text').value;
+    val = $.trim(val);
 
     if (val && Meteor.userId()) {
       Meteor.call('submit', val);
