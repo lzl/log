@@ -78,6 +78,7 @@ Template.paper.events({
 
     if (val && Meteor.userId()) {
       Meteor.call('submit', val);
+      Session.set('showWelcome', false);
     }
 
     if (val && !Meteor.userId()) {
