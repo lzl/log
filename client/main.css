@@ -27,7 +27,7 @@ a:visited {
   color: #333;
   text-decoration: none;
 }
-.login {
+#login-buttons {
   position: absolute;
   top: 1em;
   right: 25px;

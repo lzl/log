@@ -70,7 +70,7 @@ Template.paper.userLogs = function () {
   });
 };
 
-Template.paper.events({
+Template.pencil.events({
   'submit form': function (e, tmpl) {
     e.preventDefault();
     var val = tmpl.find('#text').value;
@@ -233,7 +233,7 @@ Template.paper.showMoreSearch = function () {
   return Logs.find({text: query}).count() > 9;
 };
 
-Template.paper.events({
+Template.pencil.events({
   'keyup, #text': function (e, tmpl) {
     e.preventDefault();
     var val = tmpl.find('#text').value;
