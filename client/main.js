@@ -87,5 +87,6 @@ Template.log.events({
     // information about that removed log, including
     // the timestamp when it was created.
     Meteor.call('undo', undoLog);
+    Session.set('showWelcome', false);
   }
 });

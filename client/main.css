@@ -19,8 +19,12 @@ h1, h2, h3 {
   margin-bottom: 1em;
   font-weight: bold;
 }
+
 a:visited {
   color: #639;
+}
+a[href="#undo"]:visited {
+  color: #428bca;
 }
 
 .title, .title:hover, .title:visited {
