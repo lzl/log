@@ -8,67 +8,69 @@
 </head>
 <body>
   <h1><a href="/" class="title" title="{{i18n 'totalUsers'}} {{userCounts}} / {{i18n 'totalLogs'}} {{logCounts}}">{{i18n "title"}}</a></h1>
-  <div class="login">
-    {{> loginButtons align="right"}}
-  </div>
-  <div class="paper">
-    {{> paper}}
-  </div>
+  {{> loginButtons align="right"}}
+  {{> paper}}
 </body>
 
 <template name="paper">
+  <div class="paper">
+    {{> pencil}}
+
+    {{#if loggingIn}}
+      <div class="loading">{{loading}}</div>
+    {{/if}}
+
+    {{#if showPreview}}
+      <div class="border">
+        {{#markdown}}{{textPreview}}{{/markdown}}
+        <div class="label label-info topRight transparent">{{i18n "preview"}}</div>
+      </div>
+    {{/if}}
+
+    {{#if currentUser}}
+      {{#if showWelcome}}
+        <div class="border">
+          {{#markdown}}{{welcome}}{{/markdown}}
+          <div class="label label-info topRight transparent">{{i18n "welcome"}}</div>
+        </div>
+      {{/if}}
+
+      {{#if showSearch}}
+        <ul>
+          {{#each searchedLogs}}
+            {{> log}}
+          {{/each}}
+          {{#if showMoreSearch}}
+            <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>{{i18n "loadMore"}}</button>
+          {{/if}}
+        </ul>
+      {{else}}
+        <ul>
+          {{#each userLogs}}
+            {{> log}}
+          {{/each}}
+        </ul>
+        {{#if showMore}}
+          <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>{{i18n "loadMore"}}</button>
+        {{/if}}
+      {{/if}}
+    {{else}}
+      <ul>
+        {{#each demoLogs}}
+          {{> log}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+</template>
+
+<template name="pencil">
   <div class="pencil">
     <form>
       <textarea type="text" id="text" class="form-control" placeholder="{{i18n "placeholder"}}">{{autosave}}</textarea>
       <button type="submit" class="btn btn-primary btn-block">{{i18n "submit"}}</button>
     </form>
   </div>
-
-  {{#if loggingIn}}
-  <div class="loading">{{loading}}</div>
-  {{/if}}
-
-  {{#if showPreview}}
-  <div class="border">
-    {{#markdown}}{{textPreview}}{{/markdown}}
-    <div class="label label-info topRight transparent">{{i18n "preview"}}</div>
-  </div>
-  {{/if}}
-
-  {{#if currentUser}}
-    {{#if showWelcome}}
-    <div class="border">
-      {{#markdown}}{{welcome}}{{/markdown}}
-      <div class="label label-info topRight transparent">{{i18n "welcome"}}</div>
-    </div>
-    {{/if}}
-
-    {{#if showSearch}}
-    <ul>
-      {{#each searchedLogs}}
-        {{> log}}
-      {{/each}}
-      {{#if showMoreSearch}}
-        <button type="button" class="search-more btn btn-default btn-block" {{disabledSearchMore}}>{{i18n "loadMore"}}</button>
-      {{/if}}
-    </ul>
-    {{else}}
-      <ul>
-        {{#each userLogs}}
-          {{> log}}
-        {{/each}}
-      </ul>
-      {{#if showMore}}
-        <button type="button" class="load-more btn btn-default btn-block" {{disabledLoadMore}}>{{i18n "loadMore"}}</button>
-      {{/if}}
-    {{/if}}
-  {{else}}
-    <ul>
-      {{#each demoLogs}}
-        {{> log}}
-      {{/each}}
-    </ul>
-  {{/if}}
 </template>
 
 <template name="log">
