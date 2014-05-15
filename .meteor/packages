@@ -11,4 +11,4 @@ showdown
 force-ssl
 appcache
 audit-argument-checks
-browser-policy
+mixpanel
