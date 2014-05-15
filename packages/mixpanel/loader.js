@@ -41,4 +41,4 @@
     b.__SV = 1.2
   }
 })(document, window.mixpanel || []);
-// mixpanel.init(YOUR_TOKEN);
+mixpanel.init(Meteor.settings.public.mixpanel);
