@@ -1,5 +1,6 @@
 // The function will run as soon as the DOM is ready.
 Meteor.startup(function () {
+  Session.set('finger', 'step0');
   ///// resize & focus /////
   autoresize();
   $( "#text" ).focus();

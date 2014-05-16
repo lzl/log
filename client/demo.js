@@ -27,6 +27,11 @@ if (!Meteor.userId()) {
     } else {
       console.log("You should signup by click the [Sign in] button.");
       Meteor.clearInterval(timeout);
+      if (Session.get('finger') === 'step1') {
+        Session.set('finger', 'step0');
+      } else {
+        Session.set('finger', 'step1');
+      }
     }
   }
   // Insert the message above every 2 seconds.

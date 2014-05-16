@@ -113,6 +113,29 @@ textarea {
   opacity: 0.7;
 }
 
+.finger {
+  position: absolute;
+  opacity: 0;
+  top: -20px;
+  left: 6px;
+  color: #2a6496;
+  -webkit-transition: all 0.5s 0 ease;
+  transition: all 0.5s 0 ease;
+}
+.step0 {
+  opacity: 1;
+  top: 224px;
+}
+.step1 {
+  opacity: 1;
+  top: 69px;
+  left: 6px;
+}
+.step2 {
+  opacity: 1;
+  top: 155px;
+}
+
 img {
   max-width: 100%;
 }
