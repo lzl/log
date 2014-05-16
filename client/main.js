@@ -3,12 +3,13 @@ Meteor.startup(function () {
   ///// resize & focus /////
   autoresize();
   $( "#text" ).focus();
-  // Remove next line before run the code if you don't use Mixpanel.
+  // Remove next lines before run the code if you don't use Mixpanel.
   if (Meteor.userId()) {
     mixpanel.track("User");
   } else {
     mixpanel.track("Visitor");
   }
+  // Mixpanel codes end.
 });
 
 ///// Logs /////
