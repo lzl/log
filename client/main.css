@@ -117,8 +117,8 @@ textarea {
   position: absolute;
   opacity: 0;
   top: -20px;
-  left: 6px;
-  color: #2a6496;
+  left: 7px;
+  color: #428bca;
   -webkit-transition: all 0.5s 0 ease;
   transition: all 0.5s 0 ease;
 }
@@ -129,11 +129,10 @@ textarea {
 .step1 {
   opacity: 1;
   top: 69px;
-  left: 6px;
 }
 .step2 {
   opacity: 1;
-  top: 155px;
+  top: 157px;
 }
 
 img {
