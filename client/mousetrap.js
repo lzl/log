@@ -10,19 +10,13 @@ Mousetrap.bind(['u', '.'], function(e) {
 });
 
 Mousetrap.bind('l', function(e) {
-  var lang = window.localStorage.lang || Session.get('lang');
+  var lang = window.localStorage.lang;
   if (lang === 'en-us') {
     i18n.setLanguage('zh-cn');
-    Session.set('lang', 'zh-cn');
-    if (window.localStorage.lang) {
-      window.localStorage.lang = 'zh-cn';
-    }
+    window.localStorage.lang = 'zh-cn';
   } else {
     i18n.setLanguage('en-us');
-    Session.set('lang', 'en-us');
-    if (window.localStorage.lang) {
-      window.localStorage.lang = 'en-us';
-    }
+    window.localStorage.lang = 'en-us';
   }
   return false;
 });
