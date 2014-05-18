@@ -1,5 +1,6 @@
 // The function will run as soon as the DOM is ready.
 Meteor.startup(function () {
+  Session.set('finger', 'step0');
   ///// resize & focus /////
   autoresize();
   $( "#text" ).focus();
@@ -30,10 +31,14 @@ Template.pencil.events({
     if (val && Meteor.userId()) {
       Meteor.call('submit', val);
       Session.set('showWelcome', false);
+      // Remove next line before run the code if you don't use Mixpanel.
+      mixpanel.track("Submit");
     }
 
     if (val && !Meteor.userId()) {
       demoContinueInsert(val);
+      // Remove next line before run the code if you don't use Mixpanel.
+      mixpanel.track("Try");
     }
 
     Session.set('searchKeyword', undefined);
@@ -73,6 +78,8 @@ Template.log.events({
     });
     // Remove that log from server.
     Logs.remove(this._id);
+    // Remove next line before run the code if you don't use Mixpanel.
+    mixpanel.track("Delete");
   },
   'click [href="#undo"]': function () {
     // Find that log with the id information
@@ -88,5 +95,7 @@ Template.log.events({
     // the timestamp when it was created.
     Meteor.call('undo', undoLog);
     Session.set('showWelcome', false);
+    // Remove next line before run the code if you don't use Mixpanel.
+    mixpanel.track("Undo");
   }
 });

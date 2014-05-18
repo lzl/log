@@ -32,6 +32,8 @@ Template.paper.events({
   'click .load-more': function (e, tmpl) {
     e.preventDefault();
     Session.set('loadMore', Session.get('loadMore') + 50);
+    // Remove next line before run the code if you don't use Mixpanel.
+    mixpanel.track("Load more");
   }
 });
 
