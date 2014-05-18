@@ -7,6 +7,8 @@ Template.paper.showWelcome = function () {
     check(result, Boolean);
     if (result) {
       Session.set('showWelcome', true);
+      // Remove next line before run the code if you don't use Mixpanel.
+      mixpanel.track("Join");
     } else {
       Session.set('showWelcome', false);
     }

@@ -33,10 +33,12 @@ Template.pencil.events({
       Session.set('showSearch', true);
       Session.set('showPreview', true);
       Session.set('textPreview', val);
+      Session.set('finger', 'step2');
     } else {
       Session.set('showSearch', false);
       Session.set('searchMore', 10);
       Session.set('showPreview', false);
+      Session.set('finger', 'step1');
     }
     autoresize();
   },
