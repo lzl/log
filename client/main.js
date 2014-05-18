@@ -42,7 +42,9 @@ Template.pencil.events({
     }
 
     Session.set('searchKeyword', undefined);
-    window.localStorage.autosave = "";
+    if (window.localStorage.autosave) {
+      window.localStorage.autosave = "";
+    }
     tmpl.find('form').reset();
     tmpl.find('#text').focus();
     Session.set('showSearch', false);

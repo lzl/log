@@ -1,6 +1,9 @@
 ///// i18n /////
 var lang = window.localStorage.lang || (navigator.language || navigator.browserLanguage).toLowerCase();
-window.localStorage.lang = lang;
+if (window.localStorage.lang) {
+  window.localStorage.lang = lang;
+}
+Session.set('lang', lang);
 if (lang === "zh-cn") {
   i18n.setLanguage('zh-cn');
 } else {

@@ -28,7 +28,9 @@ Template.pencil.events({
     e.preventDefault();
     var val = tmpl.find('#text').value;
     Session.set('searchKeyword', val);
-    window.localStorage.autosave = val;
+    if (window.localStorage.autosave) {
+      window.localStorage.autosave = val;
+    }
     if (val) {
       Session.set('showSearch', true);
       Session.set('showPreview', true);
