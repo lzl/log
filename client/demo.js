@@ -28,10 +28,10 @@ Deps.autorun(function () {
       } else {
         console.log("You should signup by click the [Sign in] button.");
         Meteor.clearInterval(timeout);
-        if (Session.get('finger') === 'step1') {
-          Session.set('finger', 'step0');
-        } else {
+        if (Session.get('finger') === 'step0') {
           Session.set('finger', 'step1');
+        } else {
+          Session.set('finger', 'step0');
         }
       }
     }
