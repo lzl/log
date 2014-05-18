@@ -79,8 +79,8 @@ textarea {
   opacity: 0;
   padding-left: .5em;
   background-color: white;
-  -webkit-transition: all 0.1s 0 ease;
-  transition: all 0.1s 0 ease;
+  -webkit-transition: all 0.1s 0s ease;
+  transition: all 0.1s 0s ease;
 }
 .log:hover .dateTime {
   top: 0;
@@ -119,8 +119,8 @@ textarea {
   top: -20px;
   left: 7px;
   color: #428bca;
-  -webkit-transition: all 0.5s 0 ease;
-  transition: all 0.5s 0 ease;
+  -webkit-transition: all 0.5s 0s ease;
+  transition: all 0.5s 0s ease;
 }
 .step0 {
   opacity: 1;
