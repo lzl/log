@@ -1,9 +1,9 @@
 log
 ===
 
-Do you have a life? [Log it for the future version of yourself.](http://log.meteor.com/)
+Do you have a life? [Log it for the future version of yourself.](https://log.meteor.com/)
 
-[![log](http://ww2.sinaimg.cn/large/62afd08agw1ees3svsu9cg20jg0b4tn3.gif)](http://log.meteor.com/)
+[![log](http://ww2.sinaimg.cn/large/62afd08agw1ees3svsu9cg20jg0b4tn3.gif)](https://log.meteor.com/)
 
 ## Why?
 
@@ -151,4 +151,4 @@ Fortunately, God forgives us. [Try it](http://log-step12-preview.meteor.com) to 
 
 At the 3rd step, I made a decision that visitors can't try my app untill they deside to create an account. The "signup" action consumes energy, people hate to consume energy before they know they will get more value back. Without Demo feature, no matter how beautiful your codes are or how great your app is, few people would buy it.
 
-Finally, this app is finished. Check out [http://log.meteor.com]().
+Finally, this app is finished. Check out [https://log.meteor.com](https://log.meteor.com).
