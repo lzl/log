@@ -48,7 +48,6 @@ Deps.autorun(function () {
       text: val,
       created_at: new Date()
     });
-    Session.set('finger', 'step1');
     if (Demo.find().count() > demoLogs.length && Session.get('demoContinue')) {
       (function() {
         // i18n begins
