@@ -23,4 +23,6 @@ Mousetrap.bind('l', function(e) {
 
 Mousetrap.bind('?', function(e) {
   Session.get('showTips') ? Session.set('showTips', false) : Session.set('showTips', true);
+  // Remove next line before run the code if you don't use Mixpanel.
+  mixpanel.track("Tips");
 });
