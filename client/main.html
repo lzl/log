@@ -35,6 +35,13 @@
         </div>
       {{/if}}
 
+      {{#if showTips}}
+        <div class="border">
+          {{#markdown}}{{tips}}{{/markdown}}
+          <div class="label label-info topRight transparent">{{i18n "tips"}}</div>
+        </div>
+      {{/if}}
+
       {{#if showSearch}}
         <ul>
           {{#each searchedLogs}}

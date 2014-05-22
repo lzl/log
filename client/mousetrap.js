@@ -22,5 +22,5 @@ Mousetrap.bind('l', function(e) {
 });
 
 Mousetrap.bind('?', function(e) {
-  Session.get('showWelcome') ? Session.set('showWelcome', false) : Session.set('showWelcome', true);
+  Session.get('showTips') ? Session.set('showTips', false) : Session.set('showTips', true);
 });
