@@ -1,8 +1,5 @@
 ///// Welcome /////
 Template.paper.showWelcome = function () {
-  if (Session.get('showWelcome')) {
-    return true;
-  }
   Meteor.call('showWelcome', function (error, result) {
     check(result, Boolean);
     if (result) {
