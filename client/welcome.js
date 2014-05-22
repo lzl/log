@@ -11,7 +11,7 @@ Template.paper.showWelcome = function () {
     }
   });
   return Session.get('showWelcome');
-}
+};
 Template.paper.welcome = function () {
   return i18n('welcomeText');
 };
