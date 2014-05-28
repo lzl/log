@@ -23,6 +23,13 @@ Template.paper.showMoreSearch = function () {
   return Logs.find({text: query}).count() > 9;
 };
 
+Template.paper.events({
+  'click .search-more': function (e, tmpl) {
+    e.preventDefault();
+    Session.set('searchMore', Session.get('searchMore') + 20);
+  }
+});
+
 Template.pencil.events({
   'keyup, #text': function (e, tmpl) {
     e.preventDefault();
@@ -41,10 +48,6 @@ Template.pencil.events({
       Session.set('finger', 'step1');
     }
     autoresize();
-  },
-  'click .search-more': function (e, tmpl) {
-    e.preventDefault();
-    Session.set('searchMore', Session.get('searchMore') + 20);
   }
 });
 

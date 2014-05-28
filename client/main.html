@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="favicon.ico?v1" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico?v1" type="image/x-icon">
 </head>
 <body>
   <h1><a href="/" class="title" title="{{i18n 'totalUsers'}} {{userCounts}} / {{i18n 'totalLogs'}} {{logCounts}}">{{i18n "title"}}</a></h1>
@@ -32,6 +32,13 @@
         <div class="border">
           {{#markdown}}{{welcome}}{{/markdown}}
           <div class="label label-info topRight transparent">{{i18n "welcome"}}</div>
+        </div>
+      {{/if}}
+
+      {{#if showTips}}
+        <div class="border">
+          {{#markdown}}{{tips}}{{/markdown}}
+          <div class="label label-info topRight transparent">{{i18n "tips"}}</div>
         </div>
       {{/if}}
 
